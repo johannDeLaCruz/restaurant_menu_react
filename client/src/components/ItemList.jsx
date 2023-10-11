@@ -1,12 +1,12 @@
-import MealCard from "./MealCard";
+import ItemCard from "./ItemCard";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 
-export default function MealList() {
+export default function ItemList() {
   return (
     <Container maxWidth="md">
       <Grid container>
-        <MealCard />
+        <ItemCard />
       </Grid>
     </Container>
   );

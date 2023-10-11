@@ -1,5 +1,5 @@
 import NavBar from "./components/NavBar";
-import MealList from "./components/MealList";
+import ItemList from "./components/ItemList";
 
 import "./App.css";
 
@@ -11,7 +11,7 @@ function App() {
       </header>
 
       <main>
-        <MealList />
+        <ItemList />
       </main>
      
     </>

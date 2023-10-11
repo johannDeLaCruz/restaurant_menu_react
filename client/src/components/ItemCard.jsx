@@ -5,7 +5,7 @@ import Typography from "@mui/material/Typography";
 import { CardActionArea } from "@mui/material";
 import Grid from "@mui/material/Grid";
 
-export default function MealCard() {
+export default function ItemCard() {
   return (
     <Grid item xs={12} sm={6} md={4}>
       <Card sx={{ maxWidth: 345 }}>
