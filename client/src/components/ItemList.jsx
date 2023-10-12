@@ -5,7 +5,7 @@ import Grid from "@mui/material/Grid";
 export default function ItemList() {
   return (
     <Container maxWidth="md">
-      <Grid container>
+      <Grid container sx={{paddingBlock: 2}}>
         <ItemCard />
       </Grid>
     </Container>

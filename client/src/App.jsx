@@ -1,4 +1,4 @@
-import NavBar from "./components/NavBar";
+import Header from "./components/Header";
 import ItemList from "./components/ItemList";
 
 import "./App.css";
@@ -6,14 +6,11 @@ import "./App.css";
 function App() {
   return (
     <>
-      <header>
-        <NavBar />
-      </header>
+      <Header />
 
       <main>
         <ItemList />
       </main>
-     
     </>
   );
 }
