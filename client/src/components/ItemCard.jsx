@@ -4,25 +4,9 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { CardActionArea } from "@mui/material";
 import Grid from "@mui/material/Grid";
-import axios from "axios";
-import { useState, useEffect } from "react";
+import PropTypes from "prop-types";
 
-export default function ItemCard() {
-  const [data, setData] = useState([]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get("/api/data"); // Fetch data from your API endpoint
-        setData(response.data);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
-
-    fetchData();
-  }, []);
-
+export default function ItemCard({ menuItem }) {
   return (
     <Grid item xs={12} sm={6} md={4}>
       <Card sx={{ maxWidth: 345 }}>
@@ -30,16 +14,20 @@ export default function ItemCard() {
           <CardMedia
             component="img"
             height="140"
-            image="/static/images/cards/contemplative-reptile.jpg"
-            alt="green iguana"
+            image={menuItem.imageURL}
+            alt={menuItem.name}
           />
           <CardContent>
-            <Typography gutterBottom variant="h5" component="div">
-              Lizard
-            </Typography>
+          <Grid container justifyContent={"space-between"}>
+              <Typography gutterBottom variant="h5" component="div">
+                {menuItem.name}
+              </Typography>
+              <Typography variant="h6" component="span">
+                ${menuItem.price}
+              </Typography>
+          </Grid>
             <Typography variant="body2" color="text.secondary">
-              Lizards are a widespread group of squamate reptiles, with over
-              6,000 species, ranging across all continents except Antarctica
+              {menuItem.description}
             </Typography>
           </CardContent>
         </CardActionArea>
@@ -47,3 +35,11 @@ export default function ItemCard() {
     </Grid>
   );
 }
+ItemCard.propTypes = {
+  menuItem: PropTypes.shape({
+    imageURL: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+  }).isRequired,
+};
