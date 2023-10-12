@@ -4,8 +4,25 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { CardActionArea } from "@mui/material";
 import Grid from "@mui/material/Grid";
+import axios from "axios";
+import { useState, useEffect } from "react";
 
 export default function ItemCard() {
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get("/api/data"); // Fetch data from your API endpoint
+        setData(response.data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <Grid item xs={12} sm={6} md={4}>
       <Card sx={{ maxWidth: 345 }}>
