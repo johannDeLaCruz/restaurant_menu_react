@@ -1,6 +1,16 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
+const daysOfWeek = [
+  "sunday",
+  "monday",
+  "tuesday",
+  "wednesday",
+  "thursday",
+  "friday",
+  "saturday",
+];
+
 const menuItemSchema = new Schema({
   name: {
     type: String,
@@ -29,6 +39,12 @@ const menuItemSchema = new Schema({
   category: {
     type: String,
     required: true,
+    set: (value) => value.toLowerCase(),
+    validate: {
+      validator: function (value) {
+        return daysOfWeek.includes(value.toLowerCase());
+      },
+    },
   },
   imageURL: {
     type: String,
