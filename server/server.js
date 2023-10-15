@@ -1,6 +1,6 @@
 const express = require("express");
 const connectDB = require("./db.config");
-const apiRoute = require("./api.js");
+const menuRoute = require("./controllers/menu.js");
 const cors = require("cors");
 
 require("dotenv").config();
@@ -8,7 +8,7 @@ require("dotenv").config();
 const app = express();
 const SERVERPORT = process.env.SERVER_PORT || 3000;
 const CLIENTPORT = process.env.CLIENT_PORT || 5173;
-app.use(cors({ origin: CLIENTPORT }));
+app.use(cors({ origin: `http://localhost:${CLIENTPORT}` }));
 
 // Connect to MongoDB Atlas
 connectDB();
@@ -16,7 +16,8 @@ connectDB();
 app.use(express.json());
 
 // Routes
-app.use("/", apiRoute);
+
+app.use("/menu", menuRoute);
 
 // Start the server
 app.listen(SERVERPORT, () => {

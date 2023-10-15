@@ -1,18 +1,37 @@
-import Header from "./components/Header";
-import ItemList from "./components/ItemList";
+import axios from "axios";
+import NavBar from "./components/NavBar";
+import DayTabs from "./components/MenuNavigation";
+import MenuList from "./components/ItemList";
+import { useState, useEffect } from "react";
 
-import "./App.css";
+const App = () => {
+  const [selectedDay, setSelectedDay] = useState('sunday'); // Default selected day
+  const [meals, setMeals] = useState([]);
 
-function App() {
+  useEffect(() => {
+    const fetchMenu = async () => {
+      try {
+        const response = await axios.get(`http://localhost:3000/menu/${selectedDay}`);
+        setMeals(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchMenu();
+  }, [selectedDay]);
+
+  const handleDayChange = (day) => {
+    setSelectedDay(day); // Update selected day when a tab is clicked
+  };
+
   return (
-    <>
-      <Header />
-
-      <main>
-        <ItemList />
-      </main>
-    </>
+    <div>
+      <NavBar />
+      <DayTabs selectedDay={selectedDay} onSelectDay={handleDayChange} />
+      <MenuList meals={meals} />
+    </div>
   );
-}
+};
 
 export default App;

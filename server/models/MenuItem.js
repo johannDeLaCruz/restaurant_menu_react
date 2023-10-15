@@ -32,10 +32,7 @@ const menuItemSchema = new Schema({
       message: "Description must be between 4 and 140 characters long.",
     },
   },
-  price: {
-    type: Number,
-    required: true,
-  },
+
   category: {
     type: String,
     required: true,
