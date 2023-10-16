@@ -41,7 +41,11 @@ const App = () => {
   return (
     <>
       <NavBar />
-      <NavTabs selectedDay={selectedDay} onSelectDay={handleDayChange} days={dayOfWeek}/>
+      <NavTabs
+        selectedDay={selectedDay}
+        onSelectDay={handleDayChange}
+        days={dayOfWeek}
+      />
       <MenuList items={items} />
       <Footer />
     </>
