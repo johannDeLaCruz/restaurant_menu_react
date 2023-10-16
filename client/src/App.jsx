@@ -2,6 +2,7 @@ import axios from "axios";
 import NavBar from "./components/NavBar";
 import NavTabs from "./components/NavTabs";
 import MenuList from "./components/MenuList";
+import Footer from "./components/Footer"
 import { useState, useEffect } from "react";
 
 const App = () => {
@@ -42,6 +43,7 @@ const App = () => {
       <NavBar />
       <NavTabs selectedDay={selectedDay} onSelectDay={handleDayChange} />
       <MenuList items={items} />
+      <Footer />
     </div>
   );
 };
