@@ -19,7 +19,7 @@ const NavTabs = ({ selectedDay, onSelectDay }) => {
   };
 
   return (
-    <Box sx={{ justifyContent: "center", display: "flex", paddingBottom: 2}}>
+    <Box sx={{ justifyContent: "center", display: "flex", paddingBottom: 2, paddingTop: 8}}>
       <Tabs
         value={selectedDay}
         onChange={handleTabChange}

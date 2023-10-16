@@ -5,8 +5,8 @@ import { Container } from "@mui/material";
 
 const MenuList = ({ items }) => {
   return (
-    <Container maxWidth="md">
-      <Grid container spacing={2}>
+    <Container maxWidth="md" >
+      <Grid container spacing={2}> 
         {items.map((menuItem, index) => (
           <Grid item key={index} xs={12} sm={6} md={4}>
             <ItemCard menuItem={menuItem} />
@@ -22,3 +22,4 @@ MenuList.propTypes = {
 };
 
 export default MenuList;
+// component="main"
