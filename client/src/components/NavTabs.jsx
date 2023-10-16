@@ -3,17 +3,17 @@ import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
 import Tabs from "@mui/material/Tabs";
 
-const days = [
-  "sunday",
-  "monday",
-  "tuesday",
-  "wednesday",
-  "thursday",
-  "friday",
-  "saturday",
-];
+// const days = [
+//   "sunday",
+//   "monday",
+//   "tuesday",
+//   "wednesday",
+//   "thursday",
+//   "friday",
+//   "saturday",
+// ];
 
-const NavTabs = ({ selectedDay, onSelectDay }) => {
+const NavTabs = ({ selectedDay, onSelectDay, days }) => {
   const handleTabChange = (event, newValue) => {
     onSelectDay(newValue); // Pass the selected day to the parent component
   };
@@ -37,6 +37,7 @@ const NavTabs = ({ selectedDay, onSelectDay }) => {
 NavTabs.propTypes = {
   selectedDay: PropTypes.string.isRequired,
   onSelectDay: PropTypes.func.isRequired,
+  days: PropTypes.array.isRequired,
 };
 
 export default NavTabs;

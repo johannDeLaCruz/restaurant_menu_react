@@ -7,13 +7,13 @@ import { useState, useEffect } from "react";
 
 const App = () => {
   const dayOfWeek = [
-    "sunday",
-    "monday",
-    "tuesday",
-    "wednesday",
-    "thursday",
-    "friday",
-    "saturday",
+    "domingo",
+    "segunda-feira",
+    "terça-feira",
+    "quarta-feira",
+    "quinta-feira",
+    "sexta-feira",
+    "sábado",
   ];
   const today = dayOfWeek[new Date().getDay()].toLowerCase();
   const [selectedDay, setSelectedDay] = useState(today);
@@ -41,7 +41,7 @@ const App = () => {
   return (
     <>
       <NavBar />
-      <NavTabs selectedDay={selectedDay} onSelectDay={handleDayChange} />
+      <NavTabs selectedDay={selectedDay} onSelectDay={handleDayChange} days={dayOfWeek}/>
       <MenuList items={items} />
       <Footer />
     </>

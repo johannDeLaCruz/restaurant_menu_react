@@ -7,7 +7,6 @@ import PropTypes from "prop-types";
 import { useState } from "react";
 import ImageDialog from "../components/ImageDialog";
 
-
 export default function ItemCard({ menuItem }) {
   const [open, setOpen] = useState(false);
 
@@ -26,12 +25,11 @@ export default function ItemCard({ menuItem }) {
         sx={{
           display: "flex",
           justifyContent: "flex-start",
-          alignItems: "flex-start",
         }}
       >
         <CardMedia
           component="img"
-          sx={{ width: 120, height: 120, objectFit: "cover", }}
+          sx={{ height: 120, width: 120, objectFit: "cover" }}
           image={menuItem.imageURL}
           alt={menuItem.name}
         />
@@ -45,7 +43,7 @@ export default function ItemCard({ menuItem }) {
           <Typography gutterBottom variant="h5" component="h3">
             {menuItem.name}
           </Typography>
-          <Typography variant="body2" color="text.secondary">
+          <Typography variant="body2" color="text.secondary" height="4em">
             {menuItem.description}
           </Typography>
         </CardContent>

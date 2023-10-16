@@ -1,14 +1,14 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const daysOfWeek = [
-  "sunday",
-  "monday",
-  "tuesday",
-  "wednesday",
-  "thursday",
-  "friday",
-  "saturday",
+const dayOfWeek = [
+  "domingo",
+  "segunda-feira",
+  "terça-feira",
+  "quarta-feira",
+  "quinta-feira",
+  "sexta-feira",
+  "sábado",
 ];
 
 const menuItemSchema = new Schema({
@@ -39,7 +39,7 @@ const menuItemSchema = new Schema({
     set: (value) => value.toLowerCase(),
     validate: {
       validator: function (value) {
-        return daysOfWeek.includes(value.toLowerCase());
+        return dayOfWeek.includes(value.toLowerCase());
       },
     },
   },
@@ -76,4 +76,3 @@ module.exports = MenuItem;
 //     "https://images.unsplash.com/photo-1515542622106-78bda8ba0e5b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by",
 //   icons: ["spicy"],
 // });
-
