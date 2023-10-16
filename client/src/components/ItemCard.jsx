@@ -2,13 +2,27 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-import { CardActionArea } from "@mui/material";
+import CardActionArea from "@mui/material/CardActionArea";
 import PropTypes from "prop-types";
+import { useState } from "react";
+import ImageDialog from "../components/ImageDialog";
+
 
 export default function ItemCard({ menuItem }) {
+  const [open, setOpen] = useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   return (
     <Card sx={{ maxWidth: 568, p: 2 }}>
       <CardActionArea
+        onClick={handleClickOpen}
         sx={{
           display: "flex",
           justifyContent: "flex-start",
@@ -17,7 +31,7 @@ export default function ItemCard({ menuItem }) {
       >
         <CardMedia
           component="img"
-          sx={{ width: 120, height: 120, objectFit: "cover" }}
+          sx={{ width: 120, height: 120, objectFit: "cover", }}
           image={menuItem.imageURL}
           alt={menuItem.name}
         />
@@ -36,6 +50,13 @@ export default function ItemCard({ menuItem }) {
           </Typography>
         </CardContent>
       </CardActionArea>
+      <ImageDialog
+        // selectedValue={selectedValue}
+        open={open}
+        handleClose={handleClose}
+        imageURL={menuItem.imageURL}
+        name={menuItem.name}
+      />
     </Card>
   );
 }
