@@ -1,18 +1,30 @@
 import axios from "axios";
 import NavBar from "./components/NavBar";
-import DayTabs from "./components/MenuNavigation";
-import MenuList from "./components/ItemList";
+import NavTabs from "./components/NavTabs";
+import MenuList from "./components/MenuList";
 import { useState, useEffect } from "react";
 
 const App = () => {
-  const [selectedDay, setSelectedDay] = useState('sunday'); // Default selected day
-  const [meals, setMeals] = useState([]);
+  const dayOfWeek = [
+    "sunday",
+    "monday",
+    "tuesday",
+    "wednesday",
+    "thursday",
+    "friday",
+    "saturday",
+  ];
+  const today = dayOfWeek[new Date().getDay()].toLowerCase();
+  const [selectedDay, setSelectedDay] = useState(today);
+  const [items, setItems] = useState([]);
 
   useEffect(() => {
     const fetchMenu = async () => {
       try {
-        const response = await axios.get(`http://localhost:3000/menu/${selectedDay}`);
-        setMeals(response.data);
+        const response = await axios.get(
+          `http://localhost:3000/menu/${selectedDay}`
+        );
+        setItems(response.data);
       } catch (error) {
         console.error(error);
       }
@@ -28,8 +40,8 @@ const App = () => {
   return (
     <div>
       <NavBar />
-      <DayTabs selectedDay={selectedDay} onSelectDay={handleDayChange} />
-      <MenuList meals={meals} />
+      <NavTabs selectedDay={selectedDay} onSelectDay={handleDayChange} />
+      <MenuList items={items} />
     </div>
   );
 };
