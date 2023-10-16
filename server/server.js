@@ -19,6 +19,8 @@ app.use(express.json());
 
 app.use("/menu", menuRoute);
 
+app.get("/", homeRoute);
+
 // Start the server
 app.listen(SERVERPORT, () => {
   console.log(`Server is running on port ${SERVERPORT}`);
