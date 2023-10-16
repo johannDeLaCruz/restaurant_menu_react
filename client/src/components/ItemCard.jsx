@@ -7,15 +7,27 @@ import PropTypes from "prop-types";
 
 export default function ItemCard({ menuItem }) {
   return (
-    <Card sx={{ maxWidth: 345 }}>
-      <CardActionArea>
+    <Card sx={{ maxWidth: 568, p: 2 }}>
+      <CardActionArea
+        sx={{
+          display: "flex",
+          justifyContent: "flex-start",
+          alignItems: "flex-start",
+        }}
+      >
         <CardMedia
           component="img"
-          height="140"
+          sx={{ width: 120, height: 120, objectFit: "cover" }}
           image={menuItem.imageURL}
           alt={menuItem.name}
         />
-        <CardContent>
+        <CardContent
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            marginLeft: 2,
+          }}
+        >
           <Typography gutterBottom variant="h5" component="h3">
             {menuItem.name}
           </Typography>
@@ -27,6 +39,7 @@ export default function ItemCard({ menuItem }) {
     </Card>
   );
 }
+
 ItemCard.propTypes = {
   menuItem: PropTypes.shape({
     imageURL: PropTypes.string.isRequired,
