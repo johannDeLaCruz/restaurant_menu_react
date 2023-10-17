@@ -6,16 +6,18 @@ import IconButton from "@mui/material/IconButton";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
-import ListItemText from "@mui/material/ListItemText";
 import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { useState } from "react";
+import { useTheme } from "@mui/material/styles";
 
 const navItems = ["Início", "Menu"];
 
 function NavBar(props) {
+  const theme = useTheme();
+
   const { window } = props;
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -24,12 +26,31 @@ function NavBar(props) {
   };
 
   const drawer = (
-    <Box onClick={handleDrawerToggle} sx={{ textAlign: "start" }}>
+    <Box
+      onClick={handleDrawerToggle}
+      sx={{
+        textAlign: "center",
+        backgroundColor: theme.palette.background.default,
+      }}
+    >
       <List>
         {navItems.map((item) => (
-          <ListItem key={item} disablePadding>
-            <ListItemButton sx={{ textAlign: "start" }}>
-              <ListItemText primary={item} />
+          <ListItem key={item}>
+            <ListItemButton>
+              <Button
+                key={item}
+                sx={{
+                  color: theme.palette.background.default,
+                  backgroundColor: "transparent",
+                  border: `1px solid ${theme.palette.background.default}`,
+                  "&:hover, &.Mui-selected": {
+                    backgroundColor: theme.palette.primary.main,
+                    color: theme.palette.secondary.main,
+                  }
+                }}
+              >
+                {item}
+              </Button>
             </ListItemButton>
           </ListItem>
         ))}
@@ -70,7 +91,18 @@ function NavBar(props) {
           </Typography>
           <Box sx={{ display: { xs: "none", sm: "block" } }}>
             {navItems.map((item) => (
-              <Button key={item} sx={{ color: "#fff" }}>
+              <Button
+                key={item}
+                sx={{
+                  color: theme.palette.background.default,
+                  backgroundColor: "transparent",
+                  border: `1px solid ${theme.palette.primary.main}`,
+                  "&:hover": {
+                    color: theme.palette.primary.main,
+                    backgroundColor: theme.palette.background.default,
+                  },
+                }}
+              >
                 {item}
               </Button>
             ))}

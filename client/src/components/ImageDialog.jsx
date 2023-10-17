@@ -3,10 +3,17 @@ import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
+import { useTheme } from "@mui/material/styles";
+
 
 export default function ImageDialog({ open, handleClose, imageURL, name }) {
+  const theme = useTheme();
   return (
-    <Dialog open={open} onClose={handleClose}>
+    <Dialog
+      open={open}
+      onClose={handleClose}
+      sx={{ backgroundColor: theme.palette.background.default }}
+    >
       <IconButton
         aria-label="close"
         onClick={handleClose}

@@ -14,7 +14,17 @@ const theme = createTheme({
     success: {
       main: "hsla(60, 5%, 43%, 1)",
     },
+    background: {
+      default: "hsla(38, 35%, 94%, 1)", //same as secondary
+    }
   },
+  typography: {
+    fontFamily: "Roboto",
+    
+
+    
+
+  }
 });
 
 export default theme;

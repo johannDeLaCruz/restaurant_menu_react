@@ -6,10 +6,11 @@ import CardActionArea from "@mui/material/CardActionArea";
 import PropTypes from "prop-types";
 import { useState } from "react";
 import ImageDialog from "../components/ImageDialog";
+import { useTheme } from "@mui/material/styles";
 
 export default function ItemCard({ menuItem }) {
   const [open, setOpen] = useState(false);
-
+  const theme = useTheme();
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -19,7 +20,15 @@ export default function ItemCard({ menuItem }) {
   };
 
   return (
-    <Card sx={{ maxWidth: 568, p: 2 }}>
+    <Card
+      sx={{
+        maxWidth: 568,
+        p: 2,
+        boxShadow: "none",
+        border: `1px solid ${theme.palette.primary.main}`,
+        backgroundColor: "transparent",
+      }}
+    >
       <CardActionArea
         onClick={handleClickOpen}
         sx={{
@@ -29,7 +38,12 @@ export default function ItemCard({ menuItem }) {
       >
         <CardMedia
           component="img"
-          sx={{ height: 120, width: 120, objectFit: "cover" }}
+          sx={{
+            height: 120,
+            width: 120,
+            objectFit: "cover",
+            borderRadius: "0.5rem",
+          }}
           image={menuItem.imageURL}
           alt={menuItem.name}
         />
@@ -49,7 +63,6 @@ export default function ItemCard({ menuItem }) {
         </CardContent>
       </CardActionArea>
       <ImageDialog
-        // selectedValue={selectedValue}
         open={open}
         handleClose={handleClose}
         imageURL={menuItem.imageURL}
