@@ -3,15 +3,13 @@ import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
 import IconButton from "@mui/material/IconButton";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { useState } from "react";
 import { useTheme } from "@mui/material/styles";
+import CustomDrawer from "../components/CustomDrawer";
 
 const navItems = ["Início", "Menu"];
 
@@ -24,39 +22,6 @@ function NavBar(props) {
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
   };
-
-  const drawer = (
-    <Box
-      onClick={handleDrawerToggle}
-      sx={{
-        textAlign: "center",
-        backgroundColor: theme.palette.background.default,
-      }}
-    >
-      <List>
-        {navItems.map((item) => (
-          <ListItem key={item}>
-            <ListItemButton>
-              <Button
-                key={item}
-                sx={{
-                  color: theme.palette.background.default,
-                  backgroundColor: "transparent",
-                  border: `1px solid ${theme.palette.background.default}`,
-                  "&:hover, &.Mui-selected": {
-                    backgroundColor: theme.palette.primary.main,
-                    color: theme.palette.secondary.main,
-                  }
-                }}
-              >
-                {item}
-              </Button>
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
-    </Box>
-  );
 
   const container =
     window !== undefined ? () => window().document.body : undefined;
@@ -81,12 +46,15 @@ function NavBar(props) {
             },
           }}
         >
-          {drawer}
+          <CustomDrawer
+            handleDrawerToggle={handleDrawerToggle}
+            navItems={navItems}
+          />
         </Drawer>
       </nav>
       <AppBar component="nav" position="static">
         <Toolbar>
-          <Typography variant="h6" component="h1" sx={{ flexGrow: 1 }}>
+          <Typography variant="h6" component="h1" sx={{ flexGrow: 1, py: 2 }}>
             RESTAURANTE
           </Typography>
           <Box sx={{ display: { xs: "none", sm: "block" } }}>

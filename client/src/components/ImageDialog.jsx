@@ -12,7 +12,7 @@ export default function ImageDialog({ open, handleClose, imageURL, name }) {
     <Dialog
       open={open}
       onClose={handleClose}
-      sx={{ backgroundColor: theme.palette.background.default }}
+      // sx={{  }}
     >
       <IconButton
         aria-label="close"
@@ -23,9 +23,9 @@ export default function ImageDialog({ open, handleClose, imageURL, name }) {
           top: 8,
         }}
       >
-        <CloseIcon />
+        <CloseIcon color="primary"/>
       </IconButton>
-      <DialogContent sx={{ pt: 7 }}>
+      <DialogContent sx={{ pt: 7, backgroundColor: theme.palette.background.default }}>
         <img src={imageURL} alt={name} width={"100%"} />
       </DialogContent>
     </Dialog>

@@ -21,6 +21,9 @@ const NavTabs = ({ selectedDay, onSelectDay, days }) => {
         onChange={handleTabChange}
         scrollButtons={true}
         variant="scrollable"
+        TabIndicatorProps={{
+          style: { display: 'none'  },
+        }}
       >
         {days.map((day, index) => (
           <CustomTab key={index} label={day} value={day} sx={{ mx: 1 }} />
