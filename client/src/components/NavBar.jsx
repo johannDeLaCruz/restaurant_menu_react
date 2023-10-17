@@ -63,7 +63,7 @@ function NavBar(props) {
           {drawer}
         </Drawer>
       </nav>
-      <AppBar component="nav">
+      <AppBar component="nav" position="static">
         <Toolbar>
           <Typography variant="h6" component="h1" sx={{ flexGrow: 1 }}>
             RESTAURANTE

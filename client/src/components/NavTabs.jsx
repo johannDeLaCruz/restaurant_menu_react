@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import Tab from "@mui/material/Tab";
+import CustomTab from "../components/CustomTab";
 import Box from "@mui/material/Box";
 import Tabs from "@mui/material/Tabs";
 
@@ -13,8 +13,7 @@ const NavTabs = ({ selectedDay, onSelectDay, days }) => {
       sx={{
         justifyContent: "center",
         display: "flex",
-        paddingBottom: 2,
-        paddingTop: 8,
+        py: 2,
       }}
     >
       <Tabs
@@ -24,7 +23,7 @@ const NavTabs = ({ selectedDay, onSelectDay, days }) => {
         variant="scrollable"
       >
         {days.map((day, index) => (
-          <Tab key={index} label={day} value={day} />
+          <CustomTab key={index} label={day} value={day} sx={{ mx: 1 }} />
         ))}
       </Tabs>
     </Box>

@@ -5,6 +5,7 @@ import MenuList from "./components/MenuList";
 import Footer from "./components/Footer";
 import { useState, useEffect } from "react";
 
+
 const App = () => {
   const dayOfWeek = [
     "domingo",
