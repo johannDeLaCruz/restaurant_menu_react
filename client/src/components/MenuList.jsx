@@ -1,24 +1,31 @@
 import PropTypes from "prop-types";
-import ItemCard from "./ItemCard";
-import Grid from "@mui/material/Grid";
-import { Container } from "@mui/material";
+import Container from "@mui/material/Container";
+import List from "@mui/material/List";
 
-const MenuList = ({ items }) => {
+import MenuItem from "../components/MenuItem";
+import Typography from "@mui/material/Typography";
+
+const MenuList = ({ selectedDay, items }) => {
   return (
     <Container maxWidth="md" component="main">
-      <Grid container spacing={2}> 
-        {items.map((menuItem, index) => (
-          <Grid item key={index} xs={12} sm={6} lg={4} height={"100%"} >
-            <ItemCard menuItem={menuItem} />
-          </Grid>
+      <Typography variant="h1">
+        -Buffet de{" "}
+        {selectedDay.charAt(0).toUpperCase() +
+          selectedDay.slice(1).toLowerCase()}
+        -
+      </Typography>
+      <List>
+        {items.map((item, index) => (
+          <MenuItem key={index} item={item} />
         ))}
-      </Grid>
+      </List>
     </Container>
   );
 };
 
 MenuList.propTypes = {
   items: PropTypes.array.isRequired,
+  selectedDay: PropTypes.string.isRequired,
 };
 
 export default MenuList;

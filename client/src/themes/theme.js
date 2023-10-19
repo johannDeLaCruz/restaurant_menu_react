@@ -2,29 +2,39 @@ import { createTheme } from "@mui/material/styles";
 
 const theme = createTheme({
   palette: {
+    type: "light",
     primary: {
-      main: "hsla(0, 13%, 51%, 1)",
+      main: "#052b0e",
     },
     secondary: {
-      main: "hsla(38, 35%, 94%, 1)",
-    },
-    error: {
-      main: "hsla(25, 50%, 52%, 1)",
-    },
-    success: {
-      main: "hsla(60, 5%, 43%, 1)",
+      main: "#f2b38f",
     },
     background: {
-      default: "hsla(38, 35%, 94%, 1)", //same as secondary
-    }
+      default: "#f5f1ea",
+      paper: "#f5f1ea",
+    },
+    error: {
+      main: "#ca6b35",
+    },
+
+  },
+  shape: {
+    borderRadius: 0,
   },
   typography: {
-    fontFamily: "Roboto",
-    
-
-    
-
-  }
+    fontFamily: "Philosopher",
+  },
+  components: {
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          minWidth: "8rem",
+          textTransform: "none",
+          fontSize: "1rem",
+        },
+      },
+    },
+  },
 });
 
 export default theme;

@@ -5,7 +5,6 @@ import MenuList from "./components/MenuList";
 import Footer from "./components/Footer";
 import { useState, useEffect } from "react";
 
-
 const App = () => {
   const dayOfWeek = [
     "domingo",
@@ -16,6 +15,7 @@ const App = () => {
     "sexta-feira",
     "sábado",
   ];
+
   const today = dayOfWeek[new Date().getDay()].toLowerCase();
   const [selectedDay, setSelectedDay] = useState(today);
   const [items, setItems] = useState([]);
@@ -41,13 +41,15 @@ const App = () => {
 
   return (
     <>
-      <NavBar />
-      <NavTabs
-        selectedDay={selectedDay}
-        onSelectDay={handleDayChange}
-        days={dayOfWeek}
-      />
-      <MenuList items={items} />
+      <header>
+        <NavBar />
+        <NavTabs
+          selectedDay={selectedDay}
+          onSelectDay={handleDayChange}
+          days={dayOfWeek}
+        />
+      </header>
+      <MenuList items={items} selectedDay={selectedDay} />
       <Footer />
     </>
   );

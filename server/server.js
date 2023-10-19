@@ -2,6 +2,7 @@ const express = require("express");
 const connectDB = require("./db.config");
 const menuRoute = require("./controllers/menu.js");
 const cors = require("cors");
+const path = require('path');
 
 require("dotenv").config();
 
@@ -14,6 +15,7 @@ app.use(cors({ origin: `http://localhost:${CLIENTPORT}` }));
 connectDB();
 
 app.use(express.json());
+// app.use(express.static(path.join(__dirname, 'client/public')));
 
 // Routes
 
