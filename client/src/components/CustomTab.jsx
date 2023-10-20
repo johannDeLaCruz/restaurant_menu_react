@@ -7,6 +7,7 @@ const CustomTab = styled(Tab)(({ theme }) => ({
   "&:hover, &.Mui-selected, &:focus": {
     backgroundColor: theme.palette.primary.main,
     color: theme.palette.secondary.main,
+    border: `1px solid ${theme.palette.secondary.main}`,
   },
   textTransform: "capitalize",
   minWidth: "7.5rem",

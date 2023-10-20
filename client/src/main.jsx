@@ -3,7 +3,6 @@ import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
 import theme from "./themes/theme";
 import ThemeProvider from "@mui/material/styles/ThemeProvider";
-// import ItemList from "./components/ItemList.jsx";
 import CssBaseline from "@mui/material/CssBaseline";
 
 // import { RouterProvider, createBrowserRouter } from "react-router-dom";

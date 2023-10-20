@@ -16,7 +16,6 @@ const theme = createTheme({
     error: {
       main: "#ca6b35",
     },
-
   },
   shape: {
     borderRadius: 0,

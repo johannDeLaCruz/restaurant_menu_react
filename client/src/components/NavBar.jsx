@@ -8,13 +8,12 @@ import Toolbar from "@mui/material/Toolbar";
 import Button from "@mui/material/Button";
 import { useState } from "react";
 import Stack from "@mui/material/Stack";
-// import { useTheme } from "@mui/material/styles";
 import CustomDrawer from "../components/CustomDrawer";
+import Logo from "../components/Logo";
 
 const navItems = ["Início", "Menu"];
 
 function NavBar(props) {
-  // const theme = useTheme();
 
   const { window } = props;
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -54,17 +53,8 @@ function NavBar(props) {
       </nav>
       <AppBar component="nav" position="static" elevation={0}>
         <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
-          <IconButton
-            color="secondary"
-            aria-label="open drawer"
-            edge="start"
-            onClick={handleDrawerToggle}
-            sx={{ display: { sm: "none" } }}
-          >
-            <MenuIcon />
-          </IconButton>
           <Box paddingBlock={1}>
-            <img src="/logo.png" alt="logo" height={68} />
+           <Logo />
           </Box>
           <Box sx={{ display: { xs: "none", sm: "block" } }}>
             <Stack direction="row" spacing={2}>
@@ -86,6 +76,15 @@ function NavBar(props) {
               ))}
             </Stack>
           </Box>
+          <IconButton
+            color="secondary"
+            aria-label="open drawer"
+            edge="start"
+            onClick={handleDrawerToggle}
+            sx={{ display: { sm: "none" } }}
+          >
+            <MenuIcon />
+          </IconButton>
         </Toolbar>
       </AppBar>
     </Box>

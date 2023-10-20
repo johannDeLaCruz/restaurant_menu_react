@@ -1,22 +1,35 @@
 import { PropTypes } from "prop-types";
 import ListItemText from "@mui/material/ListItemText";
-import Typography from "@mui/material/Typography";
-import Divider from "@mui/material/Divider";
 import ListItem from "@mui/material/ListItem";
+import Typography from "@mui/material/Typography";
 
-export default function MenuItem({ item, key }) {
+const MenuItem = ({ item, key }) => {
   return (
-    <ListItem key={key}>
-      <ListItemText>
-        <Typography variant="h2">{item.name}</Typography>
-        <Typography variant="body1">{item.description}</Typography>
-      </ListItemText>
-      <Divider />
-    </ListItem>
+    <>
+      <ListItem key={key} sx={{ py: 6 }}>
+        <ListItemText
+          primary={
+            <Typography variant="h2" align="center">
+              {item.name}
+            </Typography>
+          }
+          secondary={
+            <Typography variant="body1" align="center">
+              {item.description}
+            </Typography>
+          }
+        />
+      </ListItem>
+    </>
   );
-}
+};
 
 MenuItem.propTypes = {
-  item: PropTypes.object,
+  item: PropTypes.shape({
+    name: PropTypes.string,
+    description: PropTypes.string,
+  }),
   key: PropTypes.number,
 };
+
+export default MenuItem;
