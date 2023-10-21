@@ -11,8 +11,6 @@ const NavTabs = ({ selectedDay, onSelectDay, days }) => {
   return (
     <Box
       sx={{
-        justifyContent: "center",
-        display: "flex",
         pt: 4,
         pb: 8,
       }}
@@ -23,8 +21,9 @@ const NavTabs = ({ selectedDay, onSelectDay, days }) => {
         scrollButtons={true}
         variant="scrollable"
         TabIndicatorProps={{
-          style: { display: 'none'  },
+          style: { display: "none" },
         }}
+        sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}
       >
         {days.map((day, index) => (
           <CustomTab key={index} label={day} value={day} sx={{ mx: 1 }} />
