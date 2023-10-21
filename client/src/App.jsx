@@ -3,6 +3,7 @@ import NavBar from "./components/NavBar";
 import NavTabs from "./components/NavTabs";
 import MenuList from "./components/MenuList";
 import Footer from "./components/Footer";
+import CallToAction from "./components/CallToAction";
 import { useState, useEffect } from "react";
 
 const App = () => {
@@ -50,6 +51,7 @@ const App = () => {
         />
       </header>
       <MenuList items={items} selectedDay={selectedDay} />
+      <CallToAction />
       <Footer />
     </>
   );

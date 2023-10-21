@@ -46,7 +46,7 @@ const theme = createTheme({
     h4: {
       fontFamily: "Philosopher",
       fontSize: "2.44rem", // Equivalent to 39px
-      fontWeight: 400,
+      fontWeight: "bold",
       letterSpacing: "0.25px",
     },
     h5: {
