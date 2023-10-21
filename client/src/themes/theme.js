@@ -21,7 +21,6 @@ const theme = createTheme({
   shape: {
     borderRadius: 0,
   },
-
   typography: {
     fontFamily: ["'Philosopher', sans-serif", "'Tajawal', sans-serif"],
 

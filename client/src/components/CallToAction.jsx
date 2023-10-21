@@ -1,18 +1,24 @@
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
+import InstagramIcon from "@mui/icons-material/Instagram";
+import Stack from "@mui/material/Stack";
 
 export default function CallToAction() {
   return (
     <Box
-      py={5}
+      py={6}
       sx={{
         backgroundImage: 'url("/public/bgPattern.svg")',
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
     >
-      <Typography variant="h5" textAlign={"center"}>Nos siga no Instagram!</Typography>
-      
+     <Stack direction="row" spacing={1} alignItems={"center"} justifyContent={"center"}>
+        <Typography variant="h5" >
+          Nos siga no Instagram!
+        </Typography>
+        <InstagramIcon fontSize="large" />
+     </Stack>
     </Box>
   );
 }
