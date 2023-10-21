@@ -4,6 +4,7 @@ import List from "@mui/material/List";
 import Stack from "@mui/material/Stack";
 import MenuItem from "../components/MenuItem";
 import Typography from "@mui/material/Typography";
+import Pricing from "../components/Pricing";
 
 const MenuList = ({ selectedDay, items }) => {
   return (
@@ -25,13 +26,8 @@ const MenuList = ({ selectedDay, items }) => {
             <MenuItem key={index} item={item} />
           ))}
         </List>
-        <Typography variant="h6" paragraph>
-          Buffet R$ 11,80 a cada 100g
-        </Typography>
-        <Typography variant="h6" paragraph>
-          Proteína R$ 15,80 a cada 100g
-        </Typography>
       </Stack>
+      <Pricing />
     </Container>
   );
 };

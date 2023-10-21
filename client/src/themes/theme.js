@@ -22,6 +22,7 @@ const theme = createTheme({
     borderRadius: 0,
   },
   typography: {
+
     fontFamily: ["'Philosopher', sans-serif", "'Tajawal', sans-serif"],
 
     // fontSize: 16,
