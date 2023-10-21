@@ -4,40 +4,26 @@ import Button from "@mui/material/Button";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
-import { useTheme } from "@mui/material/styles";
+import Logo from "../components/Logo";
+import Stack from "@mui/material/Stack";
 
 export default function CustomDrawer({ handleDrawerToggle, navItems }) {
-  const theme = useTheme();
   return (
-    <Box
-      onClick={handleDrawerToggle}
-      sx={{
-        backgroundColor: theme.palette.background.default,
-      }}
-    >
-      <List sx={{ py: 6 }}>
-        {navItems.map((item) => (
-          <ListItem key={item}>
-            <ListItemButton sx={{ justifyContent: "center" }}>
-              <Button
-                key={item}
-                sx={{
-                  color: theme.palette.primary.main,
-                  backgroundColor: "transparent",
-                  border: `1px solid ${theme.palette.primary.main}`,
-                  "&:hover, &.Mui-selected, &:focus": {
-                    backgroundColor: theme.palette.primary.main,
-                    color: theme.palette.background.default,
-                  },
-                  fontWeight: "bold",
-                }}
-              >
-                {item}
-              </Button>
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
+    <Box onClick={handleDrawerToggle} bgcolor={"background.default"} paddingBlock={4}>
+      <Stack direction={"column"} alignItems={"center"}>
+        <Logo />
+        <List sx={{ pt: 4 }}>
+          {navItems.map((item) => (
+            <ListItem key={item}>
+              <ListItemButton  sx={{ justifyContent: "center" }}>
+                <Button variant="text" key={item}>
+                  {item}
+                </Button>
+              </ListItemButton>
+            </ListItem>
+          ))}
+        </List>
+      </Stack>
     </Box>
   );
 }

@@ -43,25 +43,6 @@ const menuItemSchema = new Schema({
       },
     },
   },
-  imageURL: {
-    type: String,
-    required: true,
-  },
-  icons: [
-    {
-      type: String,
-      enum: [
-        "meat",
-        "milk",
-        "wheat",
-        "vegan",
-        "gluten-free",
-        "nut-free",
-        "seafood",
-        "spicy",
-      ],
-    },
-  ],
 });
 
 const MenuItem = mongoose.model("MenuItem", menuItemSchema);
