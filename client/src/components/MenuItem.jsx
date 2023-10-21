@@ -2,24 +2,32 @@ import { PropTypes } from "prop-types";
 import ListItemText from "@mui/material/ListItemText";
 import ListItem from "@mui/material/ListItem";
 import Typography from "@mui/material/Typography";
+import Divider from "@mui/material/Divider";
+import { useTheme } from "@mui/material/styles"; 
 
 const MenuItem = ({ item, key }) => {
+  const theme = useTheme(); 
+
   return (
     <>
-      <ListItem key={key} sx={{ py: 6 }}>
+      <ListItem key={key} sx={{ py: 3 }}>
         <ListItemText
           primary={
-            <Typography variant="h2" align="center">
+            <Typography variant="h6" align="center" gutterBottom>
               {item.name}
             </Typography>
           }
           secondary={
-            <Typography variant="body1" align="center">
+            <Typography variant="body2" align="center" gutterBottom style={{ color: theme.palette.primary.light }}>
               {item.description}
             </Typography>
           }
         />
       </ListItem>
+      <Divider
+        sx={{ borderColor: "primary.main", opacity: "30%", width: "30%", margin: "0 auto" }}
+        variant="middle"
+      />
     </>
   );
 };

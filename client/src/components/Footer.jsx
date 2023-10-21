@@ -10,49 +10,55 @@ import GoogleMapsWindow from "../components/GoogleMapsWindow";
 
 export default function Footer() {
   return (
-    <Box component="footer" sx={{ width: "100%", backgroundColor: "primary.main" }}>
+    <Box
+      component="footer"
+      sx={{
+        width: "100%",
+        backgroundColor: "primary.main",
+        color: "primary.contrastText",
+      }}
+    >
       <Container maxWidth="md">
+        <Box sx={{ pt: 4, pb: 1 }}>
+          {" "}
+          <Logo />
+        </Box>
         <Grid container spacing={3}>
-          <Grid item xs={12}>
-            <Logo />
-          </Grid>
-          <Grid item container xs={12} md={6} spacing={4}>
+          <Grid item container xs={12} md={6} spacing={2}>
             <Grid item xs={6}>
-              <Typography variant="subtitle1">Endereço:</Typography>
               <List>
+                <Typography variant="h6">Endereço:</Typography>
                 <ListItem>
                   <ListItemText
                     primary="Av.Nazaré 649 Entre Quintino e Rui Barbosa"
                     secondary="Estacionamento Rotativo ao lado do antigo Bradesco (Largo do Redondo)"
                   />
                 </ListItem>
-                <Typography variant="subtitle1">Contato</Typography>
+                <Typography variant="h6">Contato</Typography>
                 <ListItem>
                   <ListItemText primary="(91) 3121-6162" />
                 </ListItem>
               </List>
             </Grid>
             <Grid item container xs={6} direction={"column"}>
-              <Typography variant="subtitle1">
-                Horário de Funcionamento:
-              </Typography>
               <List>
+                <Typography variant="h6">Horário de Funcionamento:</Typography>
                 <ListItem>
                   <ListItemText
-                    primary="Segunda a Sexta"
+                    primary="Segunda a Sexta:"
                     secondary="11:30 - 15:00"
                   />
                 </ListItem>
                 <ListItem>
                   <ListItemText
-                    primary="Sábado a Domingo"
+                    primary="Sábado a Domingo:"
                     secondary="Fechado"
                   />
                 </ListItem>
               </List>
             </Grid>
           </Grid>
-          <Grid item xs={12} md={6}>
+          <Grid item xs={12} md={6} >
             <GoogleMapsWindow />
           </Grid>
         </Grid>

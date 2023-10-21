@@ -13,7 +13,8 @@ const NavTabs = ({ selectedDay, onSelectDay, days }) => {
       sx={{
         justifyContent: "center",
         display: "flex",
-        py: 4,
+        pt: 4,
+        pb: 8,
       }}
     >
       <Tabs
