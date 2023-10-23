@@ -6,6 +6,7 @@ import MenuItem from "../components/MenuItem";
 import Typography from "@mui/material/Typography";
 import Pricing from "../components/Pricing";
 
+
 const MenuList = ({ selectedDay, items }) => {
   return (
     <Container maxWidth="md" component="main">
