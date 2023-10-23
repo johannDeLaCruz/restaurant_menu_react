@@ -2,6 +2,7 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import Stack from "@mui/material/Stack";
+import Link from "@mui/material/Link";
 
 export default function CallToAction() {
   return (
@@ -19,10 +20,26 @@ export default function CallToAction() {
         alignItems={"center"}
         justifyContent={"center"}
       >
-        <Typography variant="h5" fontWeight={"bold"}>
-          Nos siga no Instagram!
-        </Typography>
-        <InstagramIcon fontSize="large" />
+        <Link
+          href="https://instagram.com/casadeelna"
+          target="_blank"
+          underline="hover"
+        >
+          <Typography variant="h5" fontWeight={"bold"}>
+            Nos siga no Instagram!
+          </Typography>
+        </Link>
+        <Link
+          href="https://instagram.com/casadeelna"
+          underline="none"
+          
+          sx={{
+            display: "flex",
+            alignItems: "center",
+          }}
+        >
+          <InstagramIcon fontSize="large" />
+        </Link>
       </Stack>
     </Box>
   );
