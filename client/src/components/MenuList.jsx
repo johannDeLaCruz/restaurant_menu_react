@@ -22,17 +22,17 @@ const MenuList = ({ selectedDay, items, isLoading, error }) => {
             selectedDay.slice(1).toLowerCase()}
           -
         </Typography>
-        <List>
-          {isLoading ? (
-            <Loader isLoading={isLoading} />
-          ) : error ? (
-            <div>{error}</div>
-          ) : (
-            items.map((item, index) => (
+        {isLoading ? (
+          <Loader isLoading={isLoading} />
+        ) : error ? (
+          <div>{error}</div>
+        ) : (
+          <List>
+            {items.map((item, index) => (
               <MenuItem key={index} item={item} isLoading={isLoading} />
-            ))
-          )}
-        </List>
+            ))}
+          </List>
+        )}
       </Stack>
       <Pricing />
     </Container>

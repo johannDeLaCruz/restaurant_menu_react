@@ -1,12 +1,14 @@
+import Loader from "./components/Loader";
 import axios from "axios";
 import PropTypes from "prop-types";
 import NavBar from "./components/NavBar";
 import NavTabs from "./components/NavTabs";
-import Loader from "./components/Loader";
 import MenuList from "./components/MenuList";
 import Footer from "./components/Footer";
 import CallToAction from "./components/CallToAction";
 import { useState, useEffect } from "react";
+
+const SERVER_PORT = import.meta.env.VITE_SERVER_PORT
 
 const App = () => {
   const dayOfWeek = [
@@ -29,7 +31,7 @@ const App = () => {
     const fetchMenu = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3000/menu/${selectedDay}`
+          `${SERVER_PORT}/menu/${selectedDay}`
         );
         setItems(response.data);
         setIsLoading(false);

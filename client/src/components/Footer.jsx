@@ -29,7 +29,7 @@ export default function Footer() {
             justifyContent: "space-between",
           }}
         >
-          <Grid container xs={12} md={6} spacing={2}>
+          <Grid container spacing={2}>
             <Grid item xs={12}>
               <Logo />
             </Grid>
