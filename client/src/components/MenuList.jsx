@@ -5,9 +5,9 @@ import Stack from "@mui/material/Stack";
 import MenuItem from "../components/MenuItem";
 import Typography from "@mui/material/Typography";
 import Pricing from "../components/Pricing";
+import Loader from "../components/Loader";
 
-
-const MenuList = ({ selectedDay, items }) => {
+const MenuList = ({ selectedDay, items, isLoading, error }) => {
   return (
     <Container maxWidth="md" component="main">
       <Stack
@@ -23,9 +23,15 @@ const MenuList = ({ selectedDay, items }) => {
           -
         </Typography>
         <List>
-          {items.map((item, index) => (
-            <MenuItem key={index} item={item} />
-          ))}
+          {isLoading ? (
+            <Loader isLoading={isLoading} />
+          ) : error ? (
+            <div>{error}</div>
+          ) : (
+            items.map((item, index) => (
+              <MenuItem key={index} item={item} isLoading={isLoading} />
+            ))
+          )}
         </List>
       </Stack>
       <Pricing />
@@ -36,6 +42,8 @@ const MenuList = ({ selectedDay, items }) => {
 MenuList.propTypes = {
   items: PropTypes.array.isRequired,
   selectedDay: PropTypes.string.isRequired,
+  isLoading: PropTypes.bool.isRequired,
+  error: PropTypes.string,
 };
 
 export default MenuList;

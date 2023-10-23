@@ -2,11 +2,10 @@ import axios from "axios";
 import PropTypes from "prop-types";
 import NavBar from "./components/NavBar";
 import NavTabs from "./components/NavTabs";
+import Loader from "./components/Loader";
 import MenuList from "./components/MenuList";
 import Footer from "./components/Footer";
 import CallToAction from "./components/CallToAction";
-import CircularProgress from "@mui/material/CircularProgress";
-import Backdrop from "@mui/material/Backdrop";
 import { useState, useEffect } from "react";
 
 const App = () => {
@@ -56,14 +55,17 @@ const App = () => {
               days={dayOfWeek}
             />
           </header>
-          <MenuList items={items} selectedDay={selectedDay} />
+          <MenuList
+            items={items}
+            selectedDay={selectedDay}
+            isLoading={isLoading}
+            error={error}
+          />
           <CallToAction />
           <Footer />
         </>
       ) : isLoading ? (
-        <Backdrop open={isLoading}>
-          <CircularProgress color="inherit" />
-        </Backdrop>
+        <Loader isLoading={isLoading} />
       ) : (
         <div>{error}</div>
       )}
