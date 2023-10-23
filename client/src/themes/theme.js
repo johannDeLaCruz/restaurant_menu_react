@@ -40,13 +40,13 @@ const theme = createTheme({
     },
     h3: {
       fontFamily: "Philosopher",
-      fontSize: "3.44rem", // Equivalent to 55px
+      fontSize: "3rem", // Equivalent to 48px
       fontWeight: 400,
     },
     h4: {
       fontFamily: "Philosopher",
       fontSize: "2.44rem", // Equivalent to 39px
-      fontWeight: "bold",
+      fontWeight: 400,
       letterSpacing: "0.25px",
     },
     h5: {
@@ -69,12 +69,12 @@ const theme = createTheme({
     subtitle2: {
       fontFamily: "Philosopher",
       fontSize: "1rem", // Equivalent to 16px
-      fontWeight: 500,
+      fontWeight: "bold",
       letterSpacing: "0.1px",
     },
     body1: {
       fontFamily: "Tajawal",
-      fontSize: "1.1875rem", // Equivalent to 19px
+      fontSize: "1.125rem", // Equivalent to 18px
       fontWeight: 400,
       letterSpacing: "0.5px",
     },
@@ -87,7 +87,7 @@ const theme = createTheme({
     button: {
       fontFamily: "Philosopher",
       fontSize: "1rem", // Equivalent to 16px
-      fontWeight: 500,
+      fontWeight: "bold",
       // letterSpacing: "1.25px",
     },
     caption: {
@@ -131,17 +131,18 @@ const theme = createTheme({
     },
     MuiListItemText: {
       styleOverrides: {
-        primary: {
-          fontFamily: "Tajawal",
-          fontSize: "1.1875rem", // Equivalent to 19px
-          fontWeight: 400,
-          letterSpacing: "0.5px",
-        },
+        // primary: {
+        //   fontFamily: "Tajawal",
+        //   fontSize: "1.1875rem", // Equivalent to 19px
+        //   fontWeight: 400,
+        //   letterSpacing: "0.5px",
+        // },
         secondary: {
           fontFamily: "Tajawal",
-          fontSize: "1.1875rem", // Equivalent to 19px
+          fontSize: "1rem", // Equivalent to 16px
           fontWeight: 400,
           letterSpacing: "0.5px",
+          color: "#f5f1ea",
         },
       },
     },

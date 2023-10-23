@@ -13,12 +13,17 @@ export default function CallToAction() {
         backgroundPosition: "center",
       }}
     >
-     <Stack direction="row" spacing={1} alignItems={"center"} justifyContent={"center"}>
-        <Typography variant="h5" >
+      <Stack
+        direction="row"
+        spacing={1}
+        alignItems={"center"}
+        justifyContent={"center"}
+      >
+        <Typography variant="h5" fontWeight={"bold"}>
           Nos siga no Instagram!
         </Typography>
         <InstagramIcon fontSize="large" />
-     </Stack>
+      </Stack>
     </Box>
   );
 }

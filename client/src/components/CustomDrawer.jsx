@@ -9,15 +9,19 @@ import Stack from "@mui/material/Stack";
 
 export default function CustomDrawer({ handleDrawerToggle, navItems }) {
   return (
-    <Box onClick={handleDrawerToggle} bgcolor={"background.default"} paddingBlock={4}>
+    <Box
+      onClick={handleDrawerToggle}
+      bgcolor={"background.default"}
+      paddingBlock={4}
+    >
       <Stack direction={"column"} alignItems={"center"}>
         <Logo />
         <List sx={{ pt: 4 }}>
           {navItems.map((item) => (
             <ListItem key={item}>
-              <ListItemButton  sx={{ justifyContent: "center" }}>
+              <ListItemButton >
                 <Button variant="text" key={item}>
-                  {item}
+                  - {item} -
                 </Button>
               </ListItemButton>
             </ListItem>

@@ -30,8 +30,8 @@ export default function Footer() {
                 <Typography variant="h6">Endereço:</Typography>
                 <ListItem>
                   <ListItemText
-                    primary="Av.Nazaré 649 Entre Quintino e Rui Barbosa"
-                    secondary="Estacionamento Rotativo ao lado do antigo Bradesco (Largo do Redondo)"
+                    primary="Av.Nazaré 649"
+                    secondary=" Entre Quintino e Rui Barbosa. Estacionamento Rotativo ao lado do antigo Bradesco (Largo do Redondo)"
                   />
                 </ListItem>
                 <Typography variant="h6">Contato</Typography>
