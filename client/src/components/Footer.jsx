@@ -7,6 +7,7 @@ import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import Logo from "../components/Logo";
 import GoogleMapsWindow from "../components/GoogleMapsWindow";
+import { Stack } from "@mui/material";
 
 export default function Footer() {
   return (
@@ -19,12 +20,18 @@ export default function Footer() {
       }}
     >
       <Container maxWidth="md">
-        <Box sx={{ pt: 4, pb: 1 }}>
-          {" "}
-          <Logo />
-        </Box>
-        <Grid container spacing={3}>
-          <Grid item container xs={12} md={6} spacing={2}>
+        <Stack
+          spacing={1}
+          alignItems="center"
+          sx={{
+            flexDirection: { xs: "column", md: "row" },
+            justifyContent: "space-between",
+          }}
+        >
+          <Grid container xs={12} md={6} spacing={2}>
+            <Grid item xs={12}>
+              <Logo />
+            </Grid>
             <Grid item xs={6}>
               <List>
                 <Typography variant="h6">Endereço:</Typography>
@@ -58,10 +65,10 @@ export default function Footer() {
               </List>
             </Grid>
           </Grid>
-          <Grid item xs={12} md={6} >
+          <Grid item xs={12} md={6}>
             <GoogleMapsWindow />
           </Grid>
-        </Grid>
+        </Stack>
       </Container>
     </Box>
   );
