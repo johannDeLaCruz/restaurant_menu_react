@@ -28,7 +28,7 @@ export default function Footer() {
             justifyContent: "space-between",
           }}
         >
-          <Grid container spacing={2}>
+          <Grid container spacing={3}>
             <Grid item xs={12}>
               <Logo />
             </Grid>
@@ -41,7 +41,7 @@ export default function Footer() {
                     secondary=" Entre Quintino e Rui Barbosa. Estacionamento Rotativo ao lado do antigo Bradesco (Largo do Redondo)"
                   />
                 </ListItem>
-                <Typography variant="h6">Contato</Typography>
+                <Typography variant="h6">Contato:</Typography>
                 <ListItem>
                   <ListItemText primary="(91) 3121-6162" />
                 </ListItem>
@@ -65,7 +65,6 @@ export default function Footer() {
               </List>
             </Grid>
           </Grid>
-
           <GoogleMapsWindow />
         </Stack>
       </Container>

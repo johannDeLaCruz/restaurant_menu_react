@@ -10,11 +10,12 @@ export default function Pricing() {
       alignItems={"center"}
       paddingBlock={"3rem"}
       color={"warning.main"}
+      textAlign={"center"}
     >
       <Typography variant="h6" paragraph fontWeight={"regular"} >
         Buffet R$ 11,80 a cada 100g
       </Typography>
-      <Typography variant="h6" paragraph fontWeight={"regular"}>
+      <Typography variant="h6" paragraph fontWeight={"regular"} >
         Proteína R$ 15,80 a cada 100g
       </Typography>
     </Stack>
