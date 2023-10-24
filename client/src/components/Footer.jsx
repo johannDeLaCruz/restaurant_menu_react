@@ -8,7 +8,6 @@ import ListItemText from "@mui/material/ListItemText";
 import Logo from "../components/Logo";
 import GoogleMapsWindow from "../components/GoogleMapsWindow";
 import Stack from "@mui/material/Stack";
-// import Link from "@mui/material/Link";
 
 export default function Footer() {
   return (

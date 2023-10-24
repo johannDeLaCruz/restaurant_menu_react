@@ -1,5 +1,5 @@
 const express = require("express");
-const connectDB = require("./db.config");
+const { connectDB } = require("./db.config");
 const menuRoute = require("./controllers/menu.js");
 const cors = require("cors");
 // const path = require('path');

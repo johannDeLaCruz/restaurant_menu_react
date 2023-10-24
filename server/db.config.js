@@ -1,5 +1,13 @@
 const mongoose = require("mongoose");
 require("dotenv").config();
+const Redis = require("ioredis");
+
+const redisClient = new Redis({
+  socket: {
+    host: process.env.REDIS_HOST,
+    port: process.env.REDIS_PORT,
+  },
+});
 
 const connectDB = async () => {
   try {
@@ -14,4 +22,4 @@ const connectDB = async () => {
   }
 };
 
-module.exports = connectDB;
+module.exports = { connectDB, redisClient };
