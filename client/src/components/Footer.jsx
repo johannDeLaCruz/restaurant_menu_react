@@ -32,7 +32,7 @@ export default function Footer() {
             <Grid item xs={12}>
               <Logo />
             </Grid>
-            <Grid item xs={6}>
+            <Grid item xs={6} xxs={12}>
               <List>
                 <Typography variant="h6">Endereço:</Typography>
                 <ListItem>
@@ -47,7 +47,7 @@ export default function Footer() {
                 </ListItem>
               </List>
             </Grid>
-            <Grid item container xs={6} direction={"column"}>
+            <Grid item container xs={6} xxs={12} direction={"column"}>
               <List>
                 <Typography variant="h6">Horário de Funcionamento:</Typography>
                 <ListItem>
@@ -65,9 +65,8 @@ export default function Footer() {
               </List>
             </Grid>
           </Grid>
-          <Grid item xs={12} md={6}>
-            <GoogleMapsWindow />
-          </Grid>
+
+          <GoogleMapsWindow />
         </Stack>
       </Container>
     </Box>

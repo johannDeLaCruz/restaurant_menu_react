@@ -38,7 +38,7 @@ function NavBar(props) {
             keepMounted: true, // Better open performance on mobile.
           }}
           sx={{
-            display: { xs: "block", sm: "none" },
+            display: { xxs: "block", sm: "none" },
             "& .MuiDrawer-paper": {
               boxSizing: "border-box",
               width: "100%",
@@ -56,7 +56,7 @@ function NavBar(props) {
           <Box paddingBlock={1}>
            <Logo />
           </Box>
-          <Box sx={{ display: { xs: "none", sm: "block" } }}>
+          <Box sx={{ display: { xxs: "none", sm: "block" } }}>
             <Stack direction="row" spacing={2}>
               {navItems.map((item) => (
                 <Button
