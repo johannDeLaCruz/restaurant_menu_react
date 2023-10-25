@@ -2,10 +2,28 @@ import PropTypes from "prop-types";
 import CustomTab from "../components/CustomTab";
 import Box from "@mui/material/Box";
 import Tabs from "@mui/material/Tabs";
+import { useEffect, useRef } from "react";
 
 const NavTabs = ({ selectedDay, onSelectDay, days }) => {
+  const tabsRef = useRef(null);
+  useEffect(() => {
+    // Center the active tab in the viewport
+    if (tabsRef.current) {
+      const activeTab = Array.from(tabsRef.current.children).find(
+        (tab) => tab.textContent.toLowerCase() === selectedDay.toLowerCase()
+      );
+      if (activeTab) {
+        activeTab.scrollIntoView({
+          behavior: "smooth",
+          block: "center",
+          inline: "center",
+        });
+      }
+    }
+  }, [selectedDay]);
+
   const handleTabChange = (event, newValue) => {
-    onSelectDay(newValue); // Pass the selected day to the parent component
+    onSelectDay(days[newValue]); // Pass the selected day to the parent component
   };
 
   return (
@@ -18,7 +36,8 @@ const NavTabs = ({ selectedDay, onSelectDay, days }) => {
       }}
     >
       <Tabs
-        value={selectedDay}
+        ref={tabsRef}
+        value={days.findIndex((day) => day.toLowerCase() === selectedDay.toLowerCase())}
         onChange={handleTabChange}
         scrollButtons={true}
         variant="scrollable"
@@ -28,7 +47,7 @@ const NavTabs = ({ selectedDay, onSelectDay, days }) => {
         sx={{ display: "flex", alignItems: "center" }}
       >
         {days.map((day, index) => (
-          <CustomTab key={index} label={day} value={day} sx={{ mx: 1 }} />
+          <CustomTab key={index} label={day} value={index} sx={{ mx: 1 }} />
         ))}
       </Tabs>
     </Box>
