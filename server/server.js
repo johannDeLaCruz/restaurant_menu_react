@@ -21,6 +21,12 @@ app.use(express.json());
 
 app.use("/menu", menuRoute);
 
+// Error handling middleware
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).json({ error: 'Internal Server Error' });
+});
+
 // app.get("/", homeRoute);
 
 // Start the server

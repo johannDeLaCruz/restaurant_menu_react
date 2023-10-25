@@ -17,9 +17,9 @@ const menuItemSchema = new Schema({
     required: true,
     validate: {
       validator: function (value) {
-        return value.length >= 2 && value.length <= 20;
+        return value.length >= 2 && value.length <= 30;
       },
-      message: "Name must be between 2 and 20 characters long.",
+      message: "Name must be between 2 and 30 characters long.",
     },
   },
   description: {
@@ -27,9 +27,9 @@ const menuItemSchema = new Schema({
     required: true,
     validate: {
       validator: function (value) {
-        return value.length >= 4 && value.length <= 140;
+        return value.length >= 4 && value.length <= 100;
       },
-      message: "Description must be between 4 and 140 characters long.",
+      message: "Description must be between 4 and 100 characters long.",
     },
   },
 
@@ -49,11 +49,3 @@ const MenuItem = mongoose.model("MenuItem", menuItemSchema);
 
 module.exports = MenuItem;
 
-// const Meal1 = new MenuItem({
-//   name: "ChickeinIN",
-//   description: "OHNOOHNOHONONONONONONONOARGHHHH",
-//   category: "Wednesday",
-//   imageURL:
-//     "https://images.unsplash.com/photo-1515542622106-78bda8ba0e5b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by",
-//   icons: ["spicy"],
-// });

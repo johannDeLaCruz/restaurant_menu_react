@@ -9,7 +9,7 @@ export default function CallToAction() {
     <Box
       py={6}
       sx={{
-        backgroundImage: 'url("/public/bgPattern.svg")',
+        backgroundImage: 'url("/images/bgPattern.svg")',
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
