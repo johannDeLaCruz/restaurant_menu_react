@@ -9,7 +9,7 @@ require("dotenv").config();
 const app = express();
 const SERVERPORT = process.env.SERVER_PORT || 3000;
 const CLIENTPORT = process.env.CLIENT_PORT || 5173;
-app.use(cors({ origin: `http://localhost:${CLIENTPORT}` }));
+app.use(cors({ origin: CLIENTPORT }));
 
 // Connect to MongoDB Atlas
 connectDB();
