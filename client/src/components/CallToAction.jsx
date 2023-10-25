@@ -3,47 +3,44 @@ import Typography from "@mui/material/Typography";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import Stack from "@mui/material/Stack";
 import Link from "@mui/material/Link";
-import Container from "@mui/material/Container";
 
 export default function CallToAction() {
   return (
-    <Container maxWidth="md">
-      <Box
-        py={6}
-        sx={{
-          backgroundImage: 'url("/public/bgPattern.svg")',
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
+    <Box
+      py={6}
+      sx={{
+        backgroundImage: 'url("/public/bgPattern.svg")',
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
+    >
+      <Stack
+        direction="row"
+        spacing={1}
+        alignItems={"center"}
+        justifyContent={"center"}
+        flexWrap={"wrap"}
       >
-        <Stack
-          direction="row"
-          spacing={1}
-          alignItems={"center"}
-          justifyContent={"center"}
-          flexWrap={"wrap"}
+        <Link
+          href="https://instagram.com/casadeelna"
+          target="_blank"
+          underline="hover"
         >
-          <Link
-            href="https://instagram.com/casadeelna"
-            target="_blank"
-            underline="hover"
-          >
-            <Typography variant="h5" fontWeight={"bold"}>
-              Nos siga no Instagram!
-            </Typography>
-          </Link>
-          <Link
-            href="https://instagram.com/casadeelna"
-            underline="none"
-            sx={{
-              display: "flex",
-              alignItems: "center",
-            }}
-          >
-            <InstagramIcon fontSize="large" />
-          </Link>
-        </Stack>
-      </Box>
-    </Container>
+          <Typography variant="h5" fontWeight={"bold"}>
+            Nos siga no Instagram!
+          </Typography>
+        </Link>
+        <Link
+          href="https://instagram.com/casadeelna"
+          underline="none"
+          sx={{
+            display: "flex",
+            alignItems: "center",
+          }}
+        >
+          <InstagramIcon fontSize="large" />
+        </Link>
+      </Stack>
+    </Box>
   );
 }
