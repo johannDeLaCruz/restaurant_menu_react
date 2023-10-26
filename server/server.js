@@ -2,29 +2,30 @@ const express = require("express");
 const { connectDB } = require("./db.config");
 const menuRoute = require("./controllers/menu.js");
 const cors = require("cors");
-// const path = require('path');
 
 require("dotenv").config();
 
 const app = express();
 const SERVERPORT = process.env.SERVER_PORT || 3000;
 const CLIENTPORT = process.env.CLIENT_PORT || 5173;
-app.use(cors({ origin: CLIENTPORT }));
 
-// Connect to MongoDB Atlas
+const corsOptions = {
+  origin: CLIENTPORT,
+  optionsSuccessStatus: 200,
+  credentials: true,
+  methods: "GET,PUT,POST,DELETE",
+};
+
 connectDB();
 
-app.use(express.json());
-// app.use(express.static(path.join(__dirname, 'client/public')));
-
-// Routes
+app.use(cors(corsOptions));
 
 app.use("/menu", menuRoute);
 
 // Error handling middleware
 app.use((err, req, res, next) => {
   console.error(err.stack);
-  res.status(500).json({ error: 'Internal Server Error' });
+  res.status(500).json({ error: "Internal Server Error" });
 });
 
 // app.get("/", homeRoute);

@@ -3,7 +3,7 @@ const router = express.Router();
 const MenuItem = require("../models/MenuItem");
 const { redisClient } = require("../db.config");
 
-router.get("/:day", async (req, res) => {
+router.get("/:day", async (req, res, next) => {
   const { day } = req.params;
   const cacheKey = `menu-${day}`;
   console.log("Fetching menu items for day:", day);
@@ -11,14 +11,15 @@ router.get("/:day", async (req, res) => {
     const cachedMenuItems = await redisClient.get(cacheKey);
     if (cachedMenuItems) {
       console.log("Returning cached menu items for day:", day);
-      res.setHeader('Cache-Control', 'public, max-age=3600');
+      res.setHeader("Cache-Control", "public, max-age=3000");
       return res.json(JSON.parse(cachedMenuItems));
     }
     const menuItems = await MenuItem.find({ category: day });
     redisClient.setex(cacheKey, 7200, JSON.stringify(menuItems));
     console.log("Fetching menu items for day:", day);
-    res.setHeader('Cache-Control', 'public, max-age=3600');
+    res.setHeader("Cache-Control", "public, max-age=3000");
     res.json(menuItems);
+    next();
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Server Error" });
