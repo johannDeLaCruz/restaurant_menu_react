@@ -1,14 +1,14 @@
 const mongoose = require("mongoose");
 require("dotenv").config();
-const Redis = require("ioredis");
+// const Redis = require("ioredis");
 
-const redisClient = new Redis({
-  username: process.env.REDIS_USERNAME,
-  password: process.env.REDIS_PASSWORD,
-  host: process.env.REDIS_HOST,
-  port: process.env.REDIS_PORT,
-  enableReadyCheck: false,
-});
+// const redisClient = new Redis({
+//   username: process.env.REDIS_USERNAME,
+//   password: process.env.REDIS_PASSWORD,
+//   host: process.env.REDIS_HOST,
+//   port: process.env.REDIS_PORT,
+//   enableReadyCheck: false,
+// });
 
 const connectDB = async () => {
   try {
@@ -23,4 +23,5 @@ const connectDB = async () => {
   }
 };
 
-module.exports = { connectDB, redisClient };
+module.exports = { connectDB };
+// add redisClient to "module.exports"

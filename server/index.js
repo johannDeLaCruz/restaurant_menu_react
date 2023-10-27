@@ -5,9 +5,14 @@ const cors = require("cors");
 
 require("dotenv").config();
 
+
 const app = express();
 const SERVERPORT = process.env.SERVER_PORT || 3000;
 const CLIENTPORT = process.env.CLIENT_PORT || 5173;
+
+
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 const corsOptions = {
   origin: CLIENTPORT,
@@ -15,6 +20,8 @@ const corsOptions = {
   credentials: true,
   methods: "GET,PUT,POST,DELETE",
 };
+
+
 
 connectDB();
 
