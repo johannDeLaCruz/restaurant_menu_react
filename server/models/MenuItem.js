@@ -43,7 +43,14 @@ const menuItemSchema = new Schema({
       },
     },
   },
+
+  // index: {
+  //   type: Number,
+  //   required: true,
+  //   unique: true,
+  // }
 });
+// menuItemSchema.index({ category: 1, index: 1 }, { unique: true });
 
 const MenuItem = mongoose.model("MenuItem", menuItemSchema);
 

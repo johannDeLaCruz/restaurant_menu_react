@@ -1,11 +1,10 @@
+import { PropTypes } from "prop-types";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import { Button, Card, CardContent, TextField, Grid } from "@mui/material";
 
-const apiUrl = "http://localhost:3000/menu/domingo"; // Replace with your API endpoint
-
-const App = () => {
+const AdminDashboard = ({ apiUrl }) => {
   const [items, setItems] = useState([]);
 
   useEffect(() => {
@@ -54,17 +53,12 @@ const App = () => {
 
   const handleAddItem = async () => {
     const newItem = {
-      name: "New Item",
-      description: "Description",
+      name: "",
+      description: "",
       editable: true,
     };
-    try {
-      const response = await axios.post(apiUrl, newItem);
-      const updatedItems = [...items, response.data];
-      setItems(updatedItems);
-    } catch (error) {
-      console.error("Error adding data:", error);
-    }
+    const updatedItems = [...items, newItem];
+    setItems(updatedItems);
   };
 
   const onDragEnd = (result) => {
@@ -113,7 +107,7 @@ const App = () => {
                     >
                       <CardContent>
                         <TextField
-                          label="Name"
+                          label="Nome"
                           value={item.name}
                           fullWidth
                           margin="normal"
@@ -125,7 +119,7 @@ const App = () => {
                           }}
                         />
                         <TextField
-                          label="Description"
+                          label="Descrição"
                           value={item.description}
                           fullWidth
                           margin="normal"
@@ -141,14 +135,14 @@ const App = () => {
                             variant="contained"
                             onClick={() => handleSave(index)}
                           >
-                            Save
+                            Salvar
                           </Button>
                         ) : (
                           <Button
                             variant="contained"
                             onClick={() => handleEdit(index)}
                           >
-                            Edit
+                            Editar
                           </Button>
                         )}
                         <Button
@@ -156,7 +150,7 @@ const App = () => {
                           color="error"
                           onClick={() => handleDelete(index)}
                         >
-                          Delete
+                          Deletar
                         </Button>
                       </CardContent>
                     </Card>
@@ -175,4 +169,8 @@ const App = () => {
   );
 };
 
-export default App;
+export default AdminDashboard;
+
+AdminDashboard.propTypes = {
+  apiUrl: PropTypes.string.isRequired,
+};
