@@ -77,4 +77,15 @@ router.delete("/:day/:id", async (req, res) => {
   }
 });
 
+router.delete("/:day", async (req, res) => {
+  const { day } = req.params;
+  try {
+    const menuItems = await MenuItem.deleteMany({ category: day });
+    res.json({ message: "Menu items deleted successfully" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Server Error" });
+  }
+});
+
 module.exports = router;

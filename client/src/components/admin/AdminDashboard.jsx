@@ -1,8 +1,11 @@
-import { PropTypes } from "prop-types";
 import { useState, useEffect } from "react";
+import { PropTypes } from "prop-types";
 import axios from "axios";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import { Button, Card, CardContent, TextField, Grid } from "@mui/material";
+import AddIcon from "@mui/icons-material/Add";
+import DeleteIcon from "@mui/icons-material/Delete";
+import EditSharpIcon from "@mui/icons-material/EditSharp";
 
 const AdminDashboard = ({ apiUrl }) => {
   const [items, setItems] = useState([]);
@@ -30,10 +33,20 @@ const AdminDashboard = ({ apiUrl }) => {
     const updatedItems = [...items];
     updatedItems[index].editable = false;
     try {
-      await axios.put(`${apiUrl}/${updatedItems[index]._id}`, {
-        name: updatedItems[index].name,
-        description: updatedItems[index].description,
-      });
+      if (updatedItems[index].isNew) {
+        // If it's a new item, send a POST request to save in the database
+        const response = await axios.post(apiUrl, {
+          name: updatedItems[index].name,
+          description: updatedItems[index].description,
+        });
+        updatedItems[index] = response.data;
+      } else {
+        // If it's an existing item, send a PUT request to update in the database
+        await axios.put(`${apiUrl}/${updatedItems[index]._id}`, {
+          name: updatedItems[index].name,
+          description: updatedItems[index].description,
+        });
+      }
       setItems(updatedItems);
     } catch (error) {
       console.error("Error saving data:", error);
@@ -51,11 +64,21 @@ const AdminDashboard = ({ apiUrl }) => {
     }
   };
 
-  const handleAddItem = async () => {
+  const handleDeleteAll = async () => {
+    try {
+      await axios.delete(apiUrl); // Assuming this endpoint deletes all items for the respective day
+      setItems([]); // Clear the items array in the state
+    } catch (error) {
+      console.error("Error deleting all data:", error);
+    }
+  };
+
+  const handleAddItem = () => {
     const newItem = {
       name: "",
       description: "",
       editable: true,
+      isNew: true, // Flag to identify new items not saved in the database
     };
     const updatedItems = [...items, newItem];
     setItems(updatedItems);
@@ -63,26 +86,18 @@ const AdminDashboard = ({ apiUrl }) => {
 
   const onDragEnd = (result) => {
     const { destination, source } = result;
-
-    // If the item is dropped outside the droppable area
     if (!destination) {
       return;
     }
-
-    // If the item is dropped in the same position
     if (
       destination.droppableId === source.droppableId &&
       destination.index === source.index
     ) {
       return;
     }
-
-    // Reorder the items based on the drag-and-drop result
     const updatedItems = Array.from(items);
     const [draggedItem] = updatedItems.splice(source.index, 1);
     updatedItems.splice(destination.index, 0, draggedItem);
-
-    // Update the state with the reordered items
     setItems(updatedItems);
   };
 
@@ -107,7 +122,7 @@ const AdminDashboard = ({ apiUrl }) => {
                     >
                       <CardContent>
                         <TextField
-                          label="Nome"
+                          label="Nome do Item"
                           value={item.name}
                           fullWidth
                           margin="normal"
@@ -119,7 +134,7 @@ const AdminDashboard = ({ apiUrl }) => {
                           }}
                         />
                         <TextField
-                          label="Descrição"
+                          label="Descrição do Item"
                           value={item.description}
                           fullWidth
                           margin="normal"
@@ -139,6 +154,7 @@ const AdminDashboard = ({ apiUrl }) => {
                           </Button>
                         ) : (
                           <Button
+                            startIcon={<EditSharpIcon />}
                             variant="contained"
                             onClick={() => handleEdit(index)}
                           >
@@ -146,6 +162,7 @@ const AdminDashboard = ({ apiUrl }) => {
                           </Button>
                         )}
                         <Button
+                          startIcon={<DeleteIcon />}
                           variant="contained"
                           color="error"
                           onClick={() => handleDelete(index)}
@@ -162,8 +179,20 @@ const AdminDashboard = ({ apiUrl }) => {
           </Grid>
         )}
       </Droppable>
-      <Button variant="contained" onClick={handleAddItem}>
-        Add Item
+      <Button
+        startIcon={<AddIcon />}
+        variant="contained"
+        onClick={handleAddItem}
+      >
+        Adicionar Novo Item
+      </Button>
+      <Button
+        startIcon={<DeleteIcon />}
+        variant="contained"
+        color="error"
+        onClick={handleDeleteAll}
+      >
+        Deletar Todos!
       </Button>
     </DragDropContext>
   );

@@ -1,5 +1,7 @@
 import { useState } from "react";
-import { Tabs, Tab } from "@mui/material";
+import Container from "@mui/material/Container";
+import Tabs from "@mui/material/Tabs";
+import Tab from "@mui/material/Tab";
 import AdminDashboard from "./AdminDashboard";
 
 const daysOfWeek = [
@@ -23,29 +25,31 @@ const NavTabs = () => {
   };
 
   return (
-    <div>
-      <Tabs
-        value={selectedDay}
-        onChange={handleTabChange}
-        centered
-        scrollButtons="auto"
-        variant="scrollable"
-      >
-        {daysOfWeek.map((day) => (
-          <Tab key={day} label={day} value={day} />
-        ))}
-      </Tabs>
-      {daysOfWeek.map((day) => (
-        <div
-          key={day}
-          style={{ display: selectedDay === day ? "block" : "none" }}
+    <>
+      <Container>
+        <Tabs
+          value={selectedDay}
+          onChange={handleTabChange}
+          scrollButtons="auto"
+          variant="scrollable"
+          sx={'.MuiTabs-flexContainer: {justifyContent: "center"}'}
         >
-          {selectedDay === day && (
-            <AdminDashboard apiUrl={`${SERVER_PORT}/menu/${day}`} />
-          )}
-        </div>
-      ))}
-    </div>
+          {daysOfWeek.map((day) => (
+            <Tab key={day} label={day} value={day} />
+          ))}
+        </Tabs>
+        {daysOfWeek.map((day) => (
+          <div
+            key={day}
+            style={{ display: selectedDay === day ? "block" : "none" }}
+          >
+            {selectedDay === day && (
+              <AdminDashboard apiUrl={`${SERVER_PORT}/menu/${day}`} />
+            )}
+          </div>
+        ))}
+      </Container>
+    </>
   );
 };
 
