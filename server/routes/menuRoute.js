@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const menuController = require("../controllers/menuControllers");
 
-router.get("/:day", async (req, res, next) => {
+router.get("/:day", async (req, res) => {
   const { day } = req.params;
   try {
     const menuItems = await menuController.getMenuItemsByDay(day);
@@ -17,7 +17,12 @@ router.post("/:day", async (req, res) => {
   const { day } = req.params;
   const { name, description, order } = req.body;
   try {
-    const menuItem = await menuController.createMenuItem(day, name, description, order);
+    const menuItem = await menuController.createMenuItem(
+      day,
+      name,
+      description,
+      order
+    );
     res.status(201).json(menuItem);
   } catch (error) {
     console.error(error);
@@ -29,7 +34,12 @@ router.put("/:day/:id", async (req, res) => {
   const { day, id } = req.params;
   const { name, description, order } = req.body;
   try {
-    const menuItem = await menuController.updateMenuItem(id, name, description, order);
+    const menuItem = await menuController.updateMenuItem(
+      id,
+      name,
+      description,
+      order
+    );
     if (!menuItem) {
       return res.status(404).json({ message: "Menu item not found" });
     }
@@ -41,7 +51,11 @@ router.put("/:day/:id", async (req, res) => {
 });
 
 router.put("/:day", async (req, res) => {
+  const { day } = req.params;
   const { reorderedItems } = req.body;
+  if (!Array.isArray(reorderedItems)) {
+    return res.status(400).json({ error: "Invalid input for reordered items" });
+  }
   try {
     await menuController.updateMenuItemsOrder(reorderedItems);
     res.json({ message: "Order updated successfully" });

@@ -24,9 +24,14 @@ const updateMenuItem = async (id, name, description, order) => {
 };
 
 const updateMenuItemsOrder = async (reorderedItems) => {
-  for (const item of reorderedItems) {
-    const { _id, order } = item;
-    await MenuItem.findByIdAndUpdate(_id, { order });
+  try {
+    for (const item of reorderedItems) {
+      const { _id, order } = item;
+      await MenuItem.findByIdAndUpdate(_id, { order });
+    }
+    return { success: true, message: "Order updated successfully" };
+  } catch (error) {
+    console.error("Error updating menu items order:", error);
   }
 };
 

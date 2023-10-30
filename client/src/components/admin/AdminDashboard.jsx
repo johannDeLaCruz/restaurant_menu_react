@@ -41,12 +41,10 @@ const AdminDashboard = ({ apiUrl }) => {
       description: currentItem.description,
       order: index,
     };
-
     try {
       const response = currentItem.isNew
         ? await axios.post(apiUrl, requestData)
         : await axios.put(`${apiUrl}/${currentItem._id}`, requestData);
-
       const updatedItems = [...items];
       updatedItems[index] = response.data;
       handleInputChange(index, "editable", false);
@@ -112,7 +110,7 @@ const AdminDashboard = ({ apiUrl }) => {
         ...item,
         order: index,
       }));
-      await axios.put(apiUrl, reorderedItems);
+      await axios.put(apiUrl, { reorderedItems });
     } catch (error) {
       console.error("Error saving order:", error);
     }

@@ -2,6 +2,7 @@ import { useState } from "react";
 import Container from "@mui/material/Container";
 import DayTabs from "./DayTabs";
 import AdminDashboard from "./AdminDashboard";
+import AdminInfoAlert from "./AdminInfoAlert";
 
 const daysOfWeek = [
   "domingo",
@@ -26,6 +27,7 @@ const AdminRoot = () => {
   return (
     <>
       <Container>
+        <AdminInfoAlert />
         <DayTabs
           handleTabChange={handleTabChange}
           selectedDay={selectedDay}

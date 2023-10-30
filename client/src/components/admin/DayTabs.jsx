@@ -9,7 +9,7 @@ const DayTabs = ({ selectedDay, handleTabChange, daysOfWeek }) => {
       sx={{
         display: "flex",
         justifyContent: "center",
-        py: 8,
+        py: 6,
       }}
     >
       <Tabs

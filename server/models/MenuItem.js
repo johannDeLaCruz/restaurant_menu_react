@@ -55,7 +55,6 @@ const menuItemSchema = new Schema({
     },
   },
 });
-// menuItemSchema.index({ category: 1, index: 1 }, { unique: true });
 
 const MenuItem = mongoose.model("MenuItem", menuItemSchema);
 
