@@ -1,7 +1,6 @@
 import { useState } from "react";
 import Container from "@mui/material/Container";
-import Tabs from "@mui/material/Tabs";
-import Tab from "@mui/material/Tab";
+import DayTabs from "./DayTabs";
 import AdminDashboard from "./AdminDashboard";
 
 const daysOfWeek = [
@@ -27,17 +26,11 @@ const NavTabs = () => {
   return (
     <>
       <Container>
-        <Tabs
-          value={selectedDay}
-          onChange={handleTabChange}
-          scrollButtons="auto"
-          variant="scrollable"
-          sx={'.MuiTabs-flexContainer: {justifyContent: "center"}'}
-        >
-          {daysOfWeek.map((day) => (
-            <Tab key={day} label={day} value={day} />
-          ))}
-        </Tabs>
+        <DayTabs
+          handleTabChange={handleTabChange}
+          selectedDay={selectedDay}
+          daysOfWeek={daysOfWeek}
+        />
         {daysOfWeek.map((day) => (
           <div
             key={day}

@@ -1,20 +1,27 @@
 import { PropTypes } from "prop-types";
-import { Tabs, Tab } from "@mui/material";
+import Tabs from "@mui/material/Tabs";
+import Tab from "@mui/material/Tab";
 
-const DayTabs = ({ days, activeDay, onChange }) => {
+const DayTabs = ({ selectedDay, handleTabChange, daysOfWeek }) => {
   return (
-    <Tabs value={activeDay} onChange={onChange}>
-      {days.map((day, index) => (
-        <Tab key={index} label={day} value={index} />
+    <Tabs
+      value={selectedDay}
+      onChange={handleTabChange}
+      scrollButtons="auto"
+      variant="scrollable"
+      sx={'.MuiTabs-flexContainer: {justifyContent: "center"}'}
+    >
+      {daysOfWeek.map((day) => (
+        <Tab key={day} label={day} value={day} />
       ))}
     </Tabs>
   );
 };
 
 DayTabs.propTypes = {
-  days: PropTypes.array.isRequired,
-  activeDay: PropTypes.number.isRequired,
-  onChange: PropTypes.func.isRequired,
+  selectedDay: PropTypes.string.isRequired,
+  handleTabChange: PropTypes.func.isRequired,
+  daysOfWeek: PropTypes.array.isRequired,
 };
 
 export default DayTabs;
