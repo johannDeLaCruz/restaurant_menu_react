@@ -1,11 +1,11 @@
-import Loader from "./components/Loader";
+import Loader from "./Loader";
 import axios from "axios";
 import PropTypes from "prop-types";
-import NavBar from "./components/NavBar";
-import NavTabs from "./components/NavTabs";
-import MenuList from "./components/MenuList";
-import Footer from "./components/Footer";
-import CallToAction from "./components/CallToAction";
+import NavBar from "./NavBar";
+import NavTabs from "./NavTabs";
+import MenuList from "./MenuList";
+import Footer from "./Footer";
+import CallToAction from "./CallToAction";
 import { useState, useEffect } from "react";
 
 const SERVER_PORT = import.meta.env.VITE_SERVER_PORT

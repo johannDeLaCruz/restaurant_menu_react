@@ -103,12 +103,10 @@ const AdminDashboard = ({ apiUrl }) => {
     if (!destination || destination.index === source.index) {
       return;
     }
-
     const updatedItems = Array.from(items);
     const [draggedItem] = updatedItems.splice(source.index, 1);
     updatedItems.splice(destination.index, 0, draggedItem);
     setItems(updatedItems);
-
     try {
       const reorderedItems = updatedItems.map((item, index) => ({
         ...item,

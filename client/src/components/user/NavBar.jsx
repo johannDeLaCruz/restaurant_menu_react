@@ -8,8 +8,8 @@ import Toolbar from "@mui/material/Toolbar";
 import Button from "@mui/material/Button";
 import { useState } from "react";
 import Stack from "@mui/material/Stack";
-import CustomDrawer from "../components/CustomDrawer";
-import Logo from "../components/Logo";
+import CustomDrawer from "./CustomDrawer";
+import Logo from "./Logo";
 
 const navItems = ["Início", "Menu"];
 

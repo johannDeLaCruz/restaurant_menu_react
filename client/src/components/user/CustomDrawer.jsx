@@ -4,7 +4,7 @@ import Button from "@mui/material/Button";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
-import Logo from "../components/Logo";
+import Logo from "./Logo";
 import Stack from "@mui/material/Stack";
 
 export default function CustomDrawer({ handleDrawerToggle, navItems }) {

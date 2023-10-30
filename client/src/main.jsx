@@ -1,11 +1,11 @@
 // import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./App.jsx";
 import theme from "./themes/theme";
 import ThemeProvider from "@mui/material/styles/ThemeProvider";
 import CssBaseline from "@mui/material/CssBaseline";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import AdminRoot from "./components/admin/AdminRoot.jsx";
+import AdminRoot from "./components/admin/AdminRoot";
+import App from "./components/user/App";
 
 const router = createBrowserRouter([
   {

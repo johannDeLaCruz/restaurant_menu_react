@@ -2,10 +2,10 @@ import PropTypes from "prop-types";
 import Container from "@mui/material/Container";
 import List from "@mui/material/List";
 import Stack from "@mui/material/Stack";
-import MenuItem from "../components/MenuItem";
+import MenuItem from "./MenuItem";
 import Typography from "@mui/material/Typography";
-import Pricing from "../components/Pricing";
-import Loader from "../components/Loader";
+import Pricing from "./Pricing";
+import Loader from "./Loader";
 
 const MenuList = ({ selectedDay, items, isLoading, error }) => {
   return (

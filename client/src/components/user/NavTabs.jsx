@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import CustomTab from "../components/CustomTab";
+import CustomTab from "./CustomTab";
 import Box from "@mui/material/Box";
 import Tabs from "@mui/material/Tabs";
 import { useEffect, useRef } from "react";

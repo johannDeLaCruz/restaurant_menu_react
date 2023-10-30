@@ -5,8 +5,8 @@ import Typography from "@mui/material/Typography";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
-import Logo from "../components/Logo";
-import GoogleMapsWindow from "../components/GoogleMapsWindow";
+import Logo from "./Logo";
+import GoogleMapsWindow from "./GoogleMapsWindow";
 import Stack from "@mui/material/Stack";
 
 export default function Footer() {
