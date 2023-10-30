@@ -16,7 +16,7 @@ const daysOfWeek = [
 const dayToday = daysOfWeek[new Date().getDay()].toLowerCase();
 const SERVER_PORT = import.meta.env.VITE_SERVER_PORT;
 
-const NavTabs = () => {
+const AdminRoot = () => {
   const [selectedDay, setSelectedDay] = useState(dayToday);
 
   const handleTabChange = (event, newValue) => {
@@ -32,18 +32,13 @@ const NavTabs = () => {
           daysOfWeek={daysOfWeek}
         />
         {daysOfWeek.map((day) => (
-          <div
-            key={day}
-            style={{ display: selectedDay === day ? "block" : "none" }}
-          >
-            {selectedDay === day && (
-              <AdminDashboard apiUrl={`${SERVER_PORT}/menu/${day}`} />
-            )}
-          </div>
+          selectedDay === day && (
+            <AdminDashboard key={day} apiUrl={`${SERVER_PORT}/menu/${day}`} />
+          )
         ))}
       </Container>
     </>
   );
 };
 
-export default NavTabs;
+export default AdminRoot;

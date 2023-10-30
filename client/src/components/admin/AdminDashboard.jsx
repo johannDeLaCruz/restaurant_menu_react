@@ -4,7 +4,7 @@ import axios from "axios";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import Button from "@mui/material/Button";
 import AdminCard from "./AdminCard";
-import Grid from "@mui/material/Grid";
+import Stack from "@mui/material/Stack";
 import AddIcon from "@mui/icons-material/Add";
 import DeleteIcon from "@mui/icons-material/Delete";
 
@@ -123,9 +123,9 @@ const AdminDashboard = ({ apiUrl }) => {
       <DragDropContext onDragEnd={onDragEnd}>
         <Droppable droppableId="droppable">
           {(provided) => (
-            <Grid
-              container
+            <Stack
               spacing={2}
+              alignItems={"center"}
               {...provided.droppableProps}
               ref={provided.innerRef}
             >
@@ -141,25 +141,29 @@ const AdminDashboard = ({ apiUrl }) => {
                 />
               ))}
               {provided.placeholder}
-            </Grid>
+            </Stack>
           )}
         </Droppable>
       </DragDropContext>
-      <Button
-        startIcon={<AddIcon />}
-        variant="contained"
-        onClick={handleAddItem}
-      >
-        Adicionar Novo Item
-      </Button>
-      <Button
-        startIcon={<DeleteIcon />}
-        variant="contained"
-        color="error"
-        onClick={handleDeleteAll}
-      >
-        Deletar Todos!
-      </Button>
+      <Stack direction={"column"} alignItems={"center"} py={6} spacing={2}>
+        <Button
+          startIcon={<AddIcon />}
+          variant="contained"
+          onClick={handleAddItem}
+          sx={{ width: 220 }}
+        >
+          Adicionar Novo Item
+        </Button>
+        <Button
+          startIcon={<DeleteIcon />}
+          variant="contained"
+          color="error"
+          onClick={handleDeleteAll}
+          sx={{ width: 220 }}
+        >
+          Deletar Todos
+        </Button>
+      </Stack>
     </>
   );
 };

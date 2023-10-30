@@ -1,20 +1,28 @@
 import { PropTypes } from "prop-types";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
+import Box from "@mui/material/Box";
 
 const DayTabs = ({ selectedDay, handleTabChange, daysOfWeek }) => {
   return (
-    <Tabs
-      value={selectedDay}
-      onChange={handleTabChange}
-      scrollButtons="auto"
-      variant="scrollable"
-      sx={'.MuiTabs-flexContainer: {justifyContent: "center"}'}
+    <Box
+      sx={{
+        display: "flex",
+        justifyContent: "center",
+        py: 8,
+      }}
     >
-      {daysOfWeek.map((day) => (
-        <Tab key={day} label={day} value={day} />
-      ))}
-    </Tabs>
+      <Tabs
+        value={selectedDay}
+        onChange={handleTabChange}
+        scrollButtons="auto"
+        variant="scrollable"
+      >
+        {daysOfWeek.map((day) => (
+          <Tab key={day} label={day} value={day} />
+        ))}
+      </Tabs>
+    </Box>
   );
 };
 
