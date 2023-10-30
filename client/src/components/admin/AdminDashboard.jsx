@@ -33,17 +33,18 @@ const AdminDashboard = ({ apiUrl }) => {
     const updatedItems = [...items];
     updatedItems[index].editable = false;
     try {
-      if (updatedItems[index].isNew) {
-        const response = await axios.post(apiUrl, {
-          name: updatedItems[index].name,
-          description: updatedItems[index].description,
-        });
+      const currentItem = updatedItems[index];
+      const requestData = {
+        name: currentItem.name,
+        description: currentItem.description,
+        order: index, // Include the 'order' property representing the index
+      };
+
+      if (currentItem.isNew) {
+        const response = await axios.post(apiUrl, requestData);
         updatedItems[index] = response.data;
       } else {
-        await axios.put(`${apiUrl}/${updatedItems[index]._id}`, {
-          name: updatedItems[index].name,
-          description: updatedItems[index].description,
-        });
+        await axios.put(`${apiUrl}/${currentItem._id}`, requestData);
       }
       setItems(updatedItems);
     } catch (error) {
@@ -88,26 +89,33 @@ const AdminDashboard = ({ apiUrl }) => {
       description: "",
       editable: true,
       isNew: true,
+      order: items.length,
     };
     const updatedItems = [...items, newItem];
     setItems(updatedItems);
   };
 
-  const onDragEnd = (result) => {
+  const onDragEnd = async (result) => {
     const { destination, source } = result;
-    if (!destination) {
-      return;
-    }
-    if (
-      destination.droppableId === source.droppableId &&
-      destination.index === source.index
-    ) {
+    if (!destination || destination.index === source.index) {
       return;
     }
     const updatedItems = Array.from(items);
     const [draggedItem] = updatedItems.splice(source.index, 1);
     updatedItems.splice(destination.index, 0, draggedItem);
     setItems(updatedItems);
+    // Save the new order to the database
+    try {
+      const reorderedItems = updatedItems.map((item, index) => ({
+        ...item,
+        order: index, // Add an 'order' property to each item representing its index
+      }));
+
+      // Send a request to update the order properties on the server
+      await axios.put(apiUrl, reorderedItems);
+    } catch (error) {
+      console.error("Error saving order:", error);
+    }
   };
 
   return (
