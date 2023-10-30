@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
 import { PropTypes } from "prop-types";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import { Button, Card, CardContent, TextField, Grid } from "@mui/material";
@@ -34,14 +34,12 @@ const AdminDashboard = ({ apiUrl }) => {
     updatedItems[index].editable = false;
     try {
       if (updatedItems[index].isNew) {
-        // If it's a new item, send a POST request to save in the database
         const response = await axios.post(apiUrl, {
           name: updatedItems[index].name,
           description: updatedItems[index].description,
         });
         updatedItems[index] = response.data;
       } else {
-        // If it's an existing item, send a PUT request to update in the database
         await axios.put(`${apiUrl}/${updatedItems[index]._id}`, {
           name: updatedItems[index].name,
           description: updatedItems[index].description,
@@ -49,25 +47,36 @@ const AdminDashboard = ({ apiUrl }) => {
       }
       setItems(updatedItems);
     } catch (error) {
-      console.error("Error saving data:", error);
+      if (error.response && error.response.data && error.response.data.error) {
+        updatedItems[index].error = error.response.data.error;
+        setItems(updatedItems);
+      } else {
+        console.error("Error saving data:", error);
+      }
     }
   };
 
   const handleDelete = async (index) => {
-    try {
-      await axios.delete(`${apiUrl}/${items[index]._id}`);
-      const updatedItems = [...items];
-      updatedItems.splice(index, 1);
+    const updatedItems = [...items];
+    const itemToDelete = updatedItems[index];
+    if (itemToDelete.isNew) {
+      updatedItems.splice(index, 1); // Remove the new item directly from the state
       setItems(updatedItems);
-    } catch (error) {
-      console.error("Error deleting data:", error);
+    } else {
+      try {
+        await axios.delete(`${apiUrl}/${itemToDelete._id}`);
+        updatedItems.splice(index, 1); // Remove the item from the state after deleting from the database
+        setItems(updatedItems);
+      } catch (error) {
+        console.error("Error deleting data:", error);
+      }
     }
   };
 
   const handleDeleteAll = async () => {
     try {
-      await axios.delete(apiUrl); // Assuming this endpoint deletes all items for the respective day
-      setItems([]); // Clear the items array in the state
+      await axios.delete(apiUrl);
+      setItems([]);
     } catch (error) {
       console.error("Error deleting all data:", error);
     }
@@ -78,7 +87,7 @@ const AdminDashboard = ({ apiUrl }) => {
       name: "",
       description: "",
       editable: true,
-      isNew: true, // Flag to identify new items not saved in the database
+      isNew: true,
     };
     const updatedItems = [...items, newItem];
     setItems(updatedItems);
@@ -102,83 +111,89 @@ const AdminDashboard = ({ apiUrl }) => {
   };
 
   return (
-    <DragDropContext onDragEnd={onDragEnd}>
-      <Droppable droppableId="droppable">
-        {(provided) => (
-          <Grid
-            container
-            spacing={2}
-            {...provided.droppableProps}
-            ref={provided.innerRef}
-          >
-            {items.map((item, index) => (
-              <Draggable key={item._id} draggableId={item._id} index={index}>
-                {(provided) => (
-                  <Grid item xs={12} md={4} key={item._id}>
-                    <Card
-                      ref={provided.innerRef}
-                      {...provided.draggableProps}
-                      {...provided.dragHandleProps}
-                    >
-                      <CardContent>
-                        <TextField
-                          label="Nome do Item"
-                          value={item.name}
-                          fullWidth
-                          margin="normal"
-                          disabled={!item.editable}
-                          onChange={(e) => {
-                            const updatedItems = [...items];
-                            updatedItems[index].name = e.target.value;
-                            setItems(updatedItems);
-                          }}
-                        />
-                        <TextField
-                          label="Descrição do Item"
-                          value={item.description}
-                          fullWidth
-                          margin="normal"
-                          disabled={!item.editable}
-                          onChange={(e) => {
-                            const updatedItems = [...items];
-                            updatedItems[index].description = e.target.value;
-                            setItems(updatedItems);
-                          }}
-                        />
-                        {item.editable ? (
+    <div>
+      <DragDropContext onDragEnd={onDragEnd}>
+        <Droppable droppableId="droppable">
+          {(provided) => (
+            <Grid
+              container
+              spacing={2}
+              {...provided.droppableProps}
+              ref={provided.innerRef}
+            >
+              {items.map((item, index) => (
+                <Draggable key={item._id} draggableId={item._id} index={index}>
+                  {(provided) => (
+                    <Grid item xs={12} md={4} key={item._id}>
+                      <Card
+                        ref={provided.innerRef}
+                        {...provided.draggableProps}
+                        {...provided.dragHandleProps}
+                      >
+                        <CardContent>
+                          <TextField
+                            label="Nome do Item"
+                            value={item.name}
+                            fullWidth
+                            margin="normal"
+                            disabled={!item.editable}
+                            error={!!item.error}
+                            helperText={item.error || ""}
+                            onChange={(e) => {
+                              const updatedItems = [...items];
+                              updatedItems[index].name = e.target.value;
+                              setItems(updatedItems);
+                            }}
+                          />
+                          <TextField
+                            label="Descrição do Item"
+                            value={item.description}
+                            fullWidth
+                            margin="normal"
+                            disabled={!item.editable}
+                            error={!!item.error}
+                            helperText={item.error || ""}
+                            onChange={(e) => {
+                              const updatedItems = [...items];
+                              updatedItems[index].description = e.target.value;
+                              setItems(updatedItems);
+                            }}
+                          />
+                          {item.editable ? (
+                            <Button
+                              variant="contained"
+                              onClick={() => handleSave(index)}
+                            >
+                              Salvar
+                            </Button>
+                          ) : (
+                            <Button
+                              startIcon={<EditSharpIcon />}
+                              variant="contained"
+                              onClick={() => handleEdit(index)}
+                            >
+                              Editar
+                            </Button>
+                          )}
                           <Button
+                            startIcon={<DeleteIcon />}
                             variant="contained"
-                            onClick={() => handleSave(index)}
+                            color="error"
+                            onClick={() => handleDelete(index)}
                           >
-                            Salvar
+                            Deletar
                           </Button>
-                        ) : (
-                          <Button
-                            startIcon={<EditSharpIcon />}
-                            variant="contained"
-                            onClick={() => handleEdit(index)}
-                          >
-                            Editar
-                          </Button>
-                        )}
-                        <Button
-                          startIcon={<DeleteIcon />}
-                          variant="contained"
-                          color="error"
-                          onClick={() => handleDelete(index)}
-                        >
-                          Deletar
-                        </Button>
-                      </CardContent>
-                    </Card>
-                  </Grid>
-                )}
-              </Draggable>
-            ))}
-            {provided.placeholder}
-          </Grid>
-        )}
-      </Droppable>
+                        </CardContent>
+                      </Card>
+                    </Grid>
+                  )}
+                </Draggable>
+              ))}
+              {provided.placeholder}
+            </Grid>
+          )}
+        </Droppable>
+      </DragDropContext>
       <Button
         startIcon={<AddIcon />}
         variant="contained"
@@ -194,7 +209,7 @@ const AdminDashboard = ({ apiUrl }) => {
       >
         Deletar Todos!
       </Button>
-    </DragDropContext>
+    </div>
   );
 };
 

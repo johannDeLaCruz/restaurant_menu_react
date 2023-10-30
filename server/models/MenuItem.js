@@ -19,7 +19,7 @@ const menuItemSchema = new Schema({
       validator: function (value) {
         return value.length >= 2 && value.length <= 30;
       },
-      message: "Name must be between 2 and 30 characters long.",
+      message: "O nome tem que ter entre 2 e 30 caracteres",
     },
   },
   description: {
@@ -29,7 +29,7 @@ const menuItemSchema = new Schema({
       validator: function (value) {
         return value.length >= 4 && value.length <= 100;
       },
-      message: "Description must be between 4 and 100 characters long.",
+      message: "A descrição tem que ter entre 4 e 100 caracteres",
     },
   },
 

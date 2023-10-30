@@ -38,8 +38,16 @@ router.post("/:day", async (req, res) => {
     await menuItem.save();
     res.status(201).json(menuItem);
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: "Server Error" });
+    // Handle validation errors
+    if (error.errors) {
+      const errorMessage = Object.values(error.errors)
+        .map((e) => e.message)
+        .join(", ");
+      res.status(400).json({ error: errorMessage });
+    } else {
+      // Handle other types of errors
+      res.status(500).json({ error: "Internal server error" });
+    }
   }
 });
 
