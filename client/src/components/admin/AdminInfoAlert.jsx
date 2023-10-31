@@ -17,9 +17,8 @@ const AdminInfoAlert = () => {
         <Alert severity="info" onClose={handleClose} variant="filled">
           <AlertTitle>Instruções de Uso:</AlertTitle>
           <List>
-            <ListItemText secondary="Para mudar a ordem dos itens — arraste os cards!"></ListItemText>
-            <ListItemText secondary='Pressione "editar" para editar o card.'></ListItemText>
-            <ListItemText secondary='Pressione "excluir" para excluir o card.'></ListItemText>
+            <ListItemText secondary="Para mudar a ordem dos itens no menu — arraste os cards!"></ListItemText>
+            <ListItemText secondary="Pressione respectivos botões para adicionar, editar ou excluir os cards"></ListItemText>
           </List>
         </Alert>
       )}

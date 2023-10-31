@@ -129,7 +129,7 @@ const AdminDashboard = ({ apiUrl }) => {
             >
               {items.map((item, index) => (
                 <AdminCard
-                  key={item._id}
+                  key={index}
                   item={item}
                   index={index}
                   handleInputChange={handleInputChange}
