@@ -14,7 +14,12 @@ const AdminInfoAlert = () => {
   return (
     <>
       {isVisible && (
-        <Alert severity="info" onClose={handleClose} variant="filled">
+        <Alert
+          severity="info"
+          onClose={handleClose}
+          variant="filled"
+          sx={{ mt: 2 }}
+        >
           <AlertTitle>Instruções de Uso:</AlertTitle>
           <List>
             <ListItemText secondary="Para mudar a ordem dos itens no menu — arraste os cards!"></ListItemText>
