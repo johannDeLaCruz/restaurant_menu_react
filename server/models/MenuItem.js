@@ -14,45 +14,35 @@ const dayOfWeek = [
 const menuItemSchema = new Schema({
   name: {
     type: String,
-    required: true,
-    validate: {
-      validator: function (value) {
-        return value.length >= 2 && value.length <= 30;
-      },
-      message: "O nome tem que ter entre 2 e 30 caracteres",
-    },
+    required: [true, "Name is required"],
+    minlength: [2, "Name must have at least 2 characters"],
+    maxlength: [30, "Name cannot exceed 30 characters"],
   },
   description: {
     type: String,
-    required: true,
-    validate: {
-      validator: function (value) {
-        return value.length >= 4 && value.length <= 100;
-      },
-      message: "A descrição tem que ter entre 4 e 100 caracteres",
-    },
+    required: [true, "Description is required"],
+    minlength: [4, "Description must have at least 4 characters"],
+    maxlength: [100, "Description cannot exceed 100 characters"],
   },
-
   category: {
     type: String,
-    required: true,
-    set: (value) => value.toLowerCase(),
+    required: [true, "Category is required"],
+    lowercase: true,
     validate: {
       validator: function (value) {
         return dayOfWeek.includes(value.toLowerCase());
       },
+      message: "Invalid category value",
     },
   },
-
   order: {
     type: Number,
-    required: true,
+    required: [true, "Order is required"],
     validate: {
-      validator: function (value) {
-        return Number.isInteger(value) && value >= 0;
-      },
-      message: "Order must be a non-negative integer",
+      validator: Number.isInteger,
+      message: "Order must be an integer",
     },
+    min: [0, "Order must be a non-negative integer"],
   },
 });
 
