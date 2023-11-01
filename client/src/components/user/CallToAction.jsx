@@ -7,11 +7,11 @@ import Link from "@mui/material/Link";
 export default function CallToAction() {
   return (
     <Box
-      py={6}
+      py={8}
       sx={{
         backgroundImage: 'url("/images/bgPattern.svg")',
         backgroundSize: "cover",
-        backgroundPosition: "top",
+        backgroundPosition: "center",
       }}
     >
       <Stack
