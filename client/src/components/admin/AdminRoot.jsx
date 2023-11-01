@@ -33,11 +33,12 @@ const AdminRoot = () => {
           selectedDay={selectedDay}
           daysOfWeek={daysOfWeek}
         />
-        {daysOfWeek.map((day) => (
-          selectedDay === day && (
-            <AdminDashboard key={day} apiUrl={`${SERVER_PORT}/menu/${day}`} />
-          )
-        ))}
+        {daysOfWeek.map(
+          (day) =>
+            selectedDay === day && (
+              <AdminDashboard key={day} apiUrl={`${SERVER_PORT}/menu/${day}`} />
+            )
+        )}
       </Container>
     </>
   );

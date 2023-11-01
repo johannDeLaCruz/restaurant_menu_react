@@ -7,6 +7,7 @@ import AdminCard from "./AdminCard";
 import Stack from "@mui/material/Stack";
 import AddIcon from "@mui/icons-material/Add";
 import DeleteIcon from "@mui/icons-material/Delete";
+import LogoutButton from "./LogoutButton";
 
 const AdminDashboard = ({ apiUrl }) => {
   const [items, setItems] = useState([]);
@@ -161,6 +162,7 @@ const AdminDashboard = ({ apiUrl }) => {
         >
           Deletar Todos
         </Button>
+        <LogoutButton />
       </Stack>
     </>
   );

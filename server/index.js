@@ -1,15 +1,14 @@
 const express = require("express");
 const { connectDB } = require("./db.config");
 const menuRoute = require("./routes/menuRoute");
+const authRoute = require("./routes/authRoute");
 const cors = require("cors");
 
 require("dotenv").config();
 
-
 const app = express();
 const SERVERPORT = process.env.SERVER_PORT || 3000;
 const CLIENTPORT = process.env.CLIENT_PORT || 5173;
-
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -21,13 +20,12 @@ const corsOptions = {
   methods: "GET,PUT,POST,DELETE",
 };
 
-
-
 connectDB();
 
 app.use(cors(corsOptions));
 
 app.use("/menu", menuRoute);
+app.use("/login", authRoute);
 
 // Error handling middleware
 app.use((err, req, res, next) => {
