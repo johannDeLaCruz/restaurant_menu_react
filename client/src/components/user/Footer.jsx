@@ -19,8 +19,9 @@ export default function Footer() {
         color: "primary.contrastText",
       }}
     >
-      <Container maxWidth="md">
+      <Container maxWidth="lg">
         <Stack
+        py={2}
           spacing={1}
           alignItems="center"
           sx={{

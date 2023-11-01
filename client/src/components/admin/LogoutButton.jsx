@@ -1,5 +1,6 @@
 import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import LogoutIcon from "@mui/icons-material/Logout";
 
 const LogoutButton = () => {
   const navigate = useNavigate();
@@ -14,6 +15,7 @@ const LogoutButton = () => {
       color="info"
       onClick={handleLogout}
       sx={{ width: 220 }}
+      startIcon={<LogoutIcon />}
     >
       Logout
     </Button>
