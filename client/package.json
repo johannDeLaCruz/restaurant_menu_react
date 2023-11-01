@@ -1,5 +1,6 @@
 {
   "name": "restaurant_menu",
+  "homepage": "https://casa-de-elna-client.vercel.app",
   "private": true,
   "version": "0.0.0",
   "type": "module",
