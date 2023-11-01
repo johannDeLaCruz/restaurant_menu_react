@@ -11,7 +11,7 @@ export default function CallToAction() {
       sx={{
         backgroundImage: 'url("/images/bgPattern.svg")',
         backgroundSize: "cover",
-        backgroundPosition: "center",
+        backgroundPosition: "top",
       }}
     >
       <Stack
